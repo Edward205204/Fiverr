@@ -3,7 +3,7 @@ import HttpStatusCode from '@/constants/http-status-enum';
 import { toast } from 'react-toastify';
 import { getAccessTokenFromLS, removeLocalStorage, setAccessTokenToLS, setProfileToLS } from './auth';
 import path from '../constants/path';
-import { config } from '@/constants/config';
+import { configs } from '@/constants/config';
 
 class Http {
   instance: AxiosInstance;
@@ -11,25 +11,25 @@ class Http {
   constructor() {
     this.accessToken = getAccessTokenFromLS();
     this.instance = axios.create({
-      baseURL: config.baseURL,
+      baseURL: configs.baseURL,
       timeout: 10000,
       headers: {
         'Content-Type': 'application/json'
       }
     });
-
     this.instance.interceptors.request.use((config) => {
-      // this.accessToken = getAccessTokenFromLS(); // lấy lại token từ localStorage
       if (this.accessToken && config.headers) {
         config.headers.Authorization = this.accessToken;
         return config;
       }
+
+      config.headers.TokenCybersoft = configs.tokenCybersoft;
       return config;
     });
     this.instance.interceptors.response.use(
       (response) => {
         const { url } = response.config;
-        if (url === path.login.slice(1) || url === path.register.slice(1)) {
+        if (url === path.login.slice(1) || url === path.signup.slice(1)) {
           this.accessToken = response.data.data.access_token;
           setAccessTokenToLS(this.accessToken);
           setProfileToLS(response.data.data.user);

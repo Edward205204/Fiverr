@@ -6,6 +6,8 @@ import { ProtectedRoute, RejectedRoute } from './routes-guards';
 import MainLayout from '@/layouts/main-layout';
 import ErrorPage from '@/pages/error-page';
 import HomePage from '@/pages/HomePage/home-page';
+import Login from '@/pages/login-page';
+import Signup from '@/pages/signup-page';
 
 export default function useReactRouter() {
   const routeElements = useRoutes([
@@ -27,6 +29,14 @@ export default function useReactRouter() {
               </MainLayout>
             </Suspense>
           )
+        },
+        {
+          path: path.login,
+          element: <Login />
+        },
+        {
+          path: path.signup,
+          element: <Signup />
         }
       ]
     },

@@ -1,4 +1,5 @@
-export const config = {
-  baseURL: 'http://localhost:3000'
-  // cần sửa config baseURL
+export const configs = {
+  baseURL: 'https://fiverrnew.cybersoft.edu.vn/api',
+  tokenCybersoft:
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCBETiAxNCIsIkhldEhhblN0cmluZyI6IjE1LzEwLzIwMjUiLCJIZXRIYW5UaW1lIjoiMTc2MDQ4NjQwMDAwMCIsIm5iZiI6MTczMDMzMjgwMCwiZXhwIjoxNzYwNjU5MjAwfQ.P0-adChuwGt_dA8kRO_sxBjpC2NVGZr7B0F_3jou79s'
 };
