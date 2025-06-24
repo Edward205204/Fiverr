@@ -29,7 +29,7 @@ class Http {
     this.instance.interceptors.response.use(
       (response) => {
         const { url } = response.config;
-        if (url === path.login.slice(1) || url === path.signup.slice(1)) {
+        if (url === path.signin.slice(1) || url === path.signup.slice(1)) {
           this.accessToken = response.data.data.access_token;
           setAccessTokenToLS(this.accessToken);
           setProfileToLS(response.data.data.user);
