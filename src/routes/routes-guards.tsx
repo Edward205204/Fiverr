@@ -6,7 +6,7 @@ import { Navigate, Outlet } from 'react-router';
 export function ProtectedRoute() {
   const { isAuthenticated } = useContext(AppContext);
 
-  return isAuthenticated ? <Outlet /> : <Navigate to={path.login} />;
+  return isAuthenticated ? <Outlet /> : <Navigate to={path.signin} />;
 }
 export function RejectedRoute() {
   const { isAuthenticated } = useContext(AppContext);

@@ -24,11 +24,11 @@ export default function Header() {
               >
                 Become a seller
               </Link>
-              <Link to={path.register} className='py-1 hover:border-b hover:border-b-white'>
+              <Link to={path.signin} className='py-1 hover:border-b hover:border-b-white'>
                 Sign in
               </Link>
               <Link
-                to={path.login}
+                to={path.signup}
                 className='bg-transparent border border-white hover:cursor-pointer hover:bg-white hover:text-red-400 transition-all duration-100 px-4 py-1 rounded-sm'
               >
                 Join
