@@ -1,21 +1,9 @@
 import SearchBar from '@/components/shared/search';
 import { Button } from '@/components/ui/button';
 import poster from '@/assets/poster5.png';
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import path from '@/constants/path';
+
 export default function HeroComponent() {
-  const [keyword, setKeyword] = useState('');
-  const navigate = useNavigate();
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && keyword.trim()) {
-      navigate(`/jobs?keyword=${encodeURIComponent(keyword.trim())}`);
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setKeyword(e.target.value);
-  };
   return (
     <>
       <section className=' bg-red-400 bg-cover bg-center' style={{ backgroundImage: `url(${poster})` }}>
@@ -26,12 +14,7 @@ export default function HeroComponent() {
                 Find the perfect <span className='italic'>freelance</span> services for your business
               </h1>
               <div className='mt-8 w-full'>
-                <SearchBar
-                  placeholder='Try "Building mobile app"'
-                  handleKeyDown={handleKeyDown}
-                  handleChange={handleChange}
-                  context={keyword}
-                />
+                <SearchBar placeholder='Try "Building mobile app"' targetUrl={path.jobs} queryKey='keyword' />
               </div>
               <div className='mt-8 flex items-center gap-4'>
                 <div className='text-white'>Popular: </div>

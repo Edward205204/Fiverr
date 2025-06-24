@@ -1,13 +1,13 @@
 import path from '@/constants/path';
 import { Suspense } from 'react';
 import { useRoutes } from 'react-router';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { ProtectedRoute, RejectedRoute } from './routes-guards';
 import MainLayout from '@/layouts/main-layout';
 import ErrorPage from '@/pages/error-page';
 import HomePage from '@/pages/HomePage/home-page';
 import Signin from '@/pages/signin-page';
 import Signup from '@/pages/signup-page';
+import Jobs from '@/pages/jobs';
 
 export default function useReactRouter() {
   const routeElements = useRoutes([
@@ -28,6 +28,14 @@ export default function useReactRouter() {
       element: <ErrorPage />
     },
     {
+      path: path.jobs,
+      element: (
+        <MainLayout>
+          <Jobs />
+        </MainLayout>
+      )
+    },
+    {
       path: '',
       element: <RejectedRoute />,
       children: [
@@ -43,7 +51,7 @@ export default function useReactRouter() {
     },
     {
       path: '',
-      element: <RejectedRoute />,
+      element: <ProtectedRoute />,
       children: []
     }
   ]);

@@ -19,12 +19,11 @@ class Http {
     });
     this.instance.interceptors.request.use((config) => {
       if (this.accessToken && config.headers) {
-        config.headers.Authorization = this.accessToken;
-        return config;
+        config.headers.token = `Bearer ${this.accessToken}`;
       }
 
       if (configs.baseURL && config.headers) {
-        config.headers.TokenCybersoft = configs.tokenCybersoft;
+        config.headers.tokenCybersoft = configs.tokenCybersoft;
       }
 
       return config;

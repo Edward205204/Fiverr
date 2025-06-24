@@ -1,51 +1,61 @@
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { createSearchParams, useNavigate } from 'react-router';
+import useQueryConfig from '@/hooks/use-query-config';
+import useInputSearch from '@/hooks/use-input-search';
+import { cn } from '@/lib/utils';
 
 interface SearchBarProps {
   placeholder: string;
-  context?: string;
-  handleKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSearch?: (searchValue: string) => void;
+  targetUrl: string;
+  queryKey?: string;
+  className?: string;
+  defaultValue?: string;
 }
-export default function SearchBar({ placeholder, handleKeyDown, handleChange, context }: SearchBarProps) {
-  const [keyword, setKeyword] = useState('');
+export default function SearchBar({
+  placeholder,
+  onSearch,
+  targetUrl,
+  queryKey = 'search',
+  className = ' w-full h-14  bg-white',
+  defaultValue
+}: SearchBarProps) {
+  const queryConfig = useQueryConfig();
+  const { register, handleSubmit } = useInputSearch();
+  const navigate = useNavigate();
+  const onSearchSubmit = (data: { search?: string }) => {
+    const value = data.search?.toString() || '';
+    if (onSearch) {
+      onSearch(value);
+      return;
+    }
 
-  useEffect(() => {
-    if (typeof context === 'string') {
-      setKeyword(context);
-    }
-  }, [context]);
+    navigate({
+      pathname: targetUrl,
+      search: createSearchParams({ ...queryConfig, [queryKey]: value }).toString()
+    });
+  };
 
-  const handleKeyDownInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (handleKeyDown) {
-      handleKeyDown(e);
-    } else {
-      console.log(keyword);
-    }
-  };
-  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (handleChange) {
-      handleChange(e);
-    } else {
-      setKeyword(e.target.value);
-    }
-  };
   return (
-    <div className='flex w-full h-14  shadow-md rounded overflow-hidden bg-white'>
-      <div className='flex items-center px-3 text-gray-500 '>
-        <Search className='w-4 h-full' />
+    <form onSubmit={handleSubmit && handleSubmit(onSearchSubmit)}>
+      <div className={cn(className, 'flex shadow-md rounded overflow-hidden')}>
+        <div className='flex items-center px-3 text-gray-500 '>
+          <Search className='w-4 h-full' />
+        </div>
+        <Input
+          type='text'
+          placeholder={placeholder}
+          defaultValue={defaultValue}
+          autoComplete='off'
+          {...(register && register('search'))}
+          className='border-0 focus-visible:ring-0 focus-visible:ring-offset-0 rounded-none w-full h-full'
+        />
+        <Button className='bg-green-500 hover:bg-green-600 rounded-none h-full w-24 ' type='submit'>
+          Search
+        </Button>
       </div>
-      <Input
-        type='text'
-        placeholder={placeholder}
-        value={keyword}
-        className='border-0 focus-visible:ring-0 focus-visible:ring-offset-0 rounded-none w-full h-full'
-        onChange={handleChangeInput}
-        onKeyDown={handleKeyDownInput}
-      />
-      <Button className='bg-green-500 hover:bg-green-600 rounded-none h-full w-24'>Search</Button>
-    </div>
+    </form>
   );
 }

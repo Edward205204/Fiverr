@@ -1,18 +1,6 @@
 import z from 'zod';
 
-const baseSchema = z.object({
-  email: z.string().email('Invalid email').nonempty('Email cannot be blank'),
-  password: z.string().nonempty('Password cannot be blank'),
-  confirmPassword: z.string().nonempty('Confirm password cannot be blank'),
-  phoneNumber: z
-    .string()
-    .regex(/^\d{10}$/, 'Phone must be a valid phone number')
-    .optional(),
-  fullName: z.string().nonempty('Name cannot be blank'),
-  user: z.string().nonempty('User cannot be blank')
-});
-
-export const RegisterSchema = z.object({
+export const baseSchema = z.object({
   name: z.string().nonempty('Name cannot be blank'),
   email: z.string().email('Invalid email').nonempty('Email cannot be blank'),
   password: z.string().nonempty('Password cannot be blank'),
@@ -20,8 +8,19 @@ export const RegisterSchema = z.object({
   birthday: z.string().nonempty('Birthday cannot be blank'),
   gender: z.boolean(),
   skill: z.array(z.string()).optional(),
-  certification: z.array(z.string()).optional()
-  // role will not be in schema when signup, only used for backend or admin
+  certification: z.array(z.string()).optional(),
+  search: z.string().optional()
+});
+
+export const RegisterSchema = baseSchema.pick({
+  name: true,
+  email: true,
+  password: true,
+  phone: true,
+  birthday: true,
+  gender: true,
+  skill: true,
+  certification: true
 });
 
 export const SigninSchema = baseSchema.pick({

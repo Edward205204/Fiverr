@@ -10,3 +10,22 @@ export interface Job {
   moTaNgan: string;
   saoCongViec: number;
 }
+
+export interface JobTypeList {
+  id: number;
+  tenLoaiCongViec: string;
+  dsNhomChiTietLoai: JobGroup[];
+}
+
+export interface JobGroup {
+  id: number;
+  tenNhom: string;
+  hinhAnh: string;
+  maLoaiCongviec: number;
+  dsChiTietLoai: JobDetail[];
+}
+
+export interface JobDetail {
+  id: number;
+  tenChiTiet: string;
+}
