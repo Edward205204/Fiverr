@@ -1,7 +1,18 @@
 import path from '@/constants/path';
 import { Link } from 'react-router';
+import { useContext, useState } from 'react';
+import { AppContext } from '@/contexts/app.context';
+import { removeLocalStorage } from '@/utils/auth';
 
 export default function Header() {
+  const { isAuthenticated, profile, reset } = useContext(AppContext);
+  const [showUserMenu, setShowUserMenu] = useState(false);
+
+  const handleLogout = () => {
+    reset();
+    removeLocalStorage();
+  };
+
   return (
     <header className='py-1 bg-transparent w-full z-50 absolute top-0 left-0 right-0 text-white'>
       <div className='container'>
@@ -24,19 +35,69 @@ export default function Header() {
               >
                 Become a seller
               </Link>
-              <Link to={path.register} className='py-1 hover:border-b hover:border-b-white'>
-                Sign in
-              </Link>
-              <Link
-                to={path.login}
-                className='bg-transparent border border-white hover:cursor-pointer hover:bg-white hover:text-red-400 transition-all duration-100 px-4 py-1 rounded-sm'
-              >
-                Join
-              </Link>
+
+              {isAuthenticated && profile ? (
+                <div className='relative'>
+                  <button
+                    onClick={() => setShowUserMenu(!showUserMenu)}
+                    className='flex items-center gap-2 py-1 px-3 rounded-lg hover:bg-white/10 transition-all duration-200'
+                  >
+                    <div className='w-8 h-8 bg-green-500 rounded-full flex items-center justify-center'>
+                      <span className='text-white font-bold text-sm'>{profile.name.charAt(0).toUpperCase()}</span>
+                    </div>
+                    <span className='text-white font-medium'>{profile.name}</span>
+                    <svg
+                      className={`w-4 h-4 transition-transform ${showUserMenu ? 'rotate-180' : ''}`}
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                    >
+                      <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M19 9l-7 7-7-7' />
+                    </svg>
+                  </button>
+
+                  {showUserMenu && (
+                    <div className='absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50'>
+                      <div className='px-4 py-2 border-b border-gray-100'>
+                        <p className='text-sm font-medium text-gray-900'>{profile.name}</p>
+                        <p className='text-xs text-gray-500'>{profile.email}</p>
+                      </div>
+                      <Link
+                        to='/profile'
+                        className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors'
+                      >
+                        Profile
+                      </Link>
+
+                      <button
+                        onClick={handleLogout}
+                        className='block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors'
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <>
+                  <Link to={path.signin} className='py-1 hover:border-b hover:border-b-white'>
+                    Sign in
+                  </Link>
+                  <Link
+                    to={path.signup}
+                    className='bg-transparent border border-white hover:cursor-pointer hover:bg-white hover:text-red-400 transition-all duration-100 px-4 py-1 rounded-sm'
+                  >
+                    Join
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
       </div>
+
+      {/* Overlay để đóng menu khi click bên ngoài */}
+      {showUserMenu && <div className='fixed inset-0 z-40' onClick={() => setShowUserMenu(false)} />}
     </header>
   );
 }

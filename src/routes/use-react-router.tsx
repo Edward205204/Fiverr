@@ -6,27 +6,38 @@ import { ProtectedRoute, RejectedRoute } from './routes-guards';
 import MainLayout from '@/layouts/main-layout';
 import ErrorPage from '@/pages/error-page';
 import HomePage from '@/pages/HomePage/home-page';
+import Signin from '@/pages/signin-page';
+import Signup from '@/pages/signup-page';
 
 export default function useReactRouter() {
   const routeElements = useRoutes([
     {
+      path: path.home,
+      element: (
+        <Suspense
+          fallback={<div className='flex text-[#811d01] items-center justify-center w-full h-screen'>Loading...</div>}
+        >
+          <MainLayout>
+            <HomePage />
+          </MainLayout>
+        </Suspense>
+      )
+    },
+    {
+      path: '*',
+      element: <ErrorPage />
+    },
+    {
       path: '',
-      // element: <ProtectedRoute /> -> day moi dung,
       element: <RejectedRoute />,
       children: [
         {
-          path: path.home,
-          element: (
-            <Suspense
-              fallback={
-                <div className='flex text-[#ee4d2d] items-center justify-center w-full h-screen'>Loading...</div>
-              }
-            >
-              <MainLayout>
-                <HomePage />
-              </MainLayout>
-            </Suspense>
-          )
+          path: path.signin,
+          element: <Signin />
+        },
+        {
+          path: path.signup,
+          element: <Signup />
         }
       ]
     },
@@ -34,10 +45,6 @@ export default function useReactRouter() {
       path: '',
       element: <RejectedRoute />,
       children: []
-    },
-    {
-      path: '*',
-      element: <ErrorPage />
     }
   ]);
   return routeElements;
