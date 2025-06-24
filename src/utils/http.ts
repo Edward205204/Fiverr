@@ -1,8 +1,8 @@
 import axios, { AxiosError, AxiosInstance } from 'axios';
 import HttpStatusCode from '@/constants/http-status-enum';
 import { toast } from 'react-toastify';
-import { getAccessTokenFromLS, removeLocalStorage, setAccessTokenToLS, setProfileToLS } from './auth';
-import path from '../constants/path';
+import { getAccessTokenFromLS, removeLocalStorage } from './auth';
+
 import { configs } from '@/constants/config';
 
 class Http {
@@ -23,17 +23,14 @@ class Http {
         return config;
       }
 
-      config.headers.TokenCybersoft = configs.tokenCybersoft;
+      if (configs.baseURL && config.headers) {
+        config.headers.TokenCybersoft = configs.tokenCybersoft;
+      }
+
       return config;
     });
     this.instance.interceptors.response.use(
       (response) => {
-        const { url } = response.config;
-        if (url === path.signin.slice(1) || url === path.signup.slice(1)) {
-          this.accessToken = response.data.data.access_token;
-          setAccessTokenToLS(this.accessToken);
-          setProfileToLS(response.data.data.user);
-        }
         return response;
       },
       (error: AxiosError) => {
