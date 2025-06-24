@@ -1,5 +1,4 @@
 import { useForm } from 'react-hook-form';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '@/components/ui/input';
 import { SigninSchema, SigninSchemaType } from '@/utils/rules';
@@ -8,8 +7,11 @@ import { Link, useNavigate } from 'react-router';
 import { useMutation } from '@tanstack/react-query';
 import authApi from '@/apis/auth.api';
 import { setAccessTokenToLS, setProfileToLS } from '@/utils/auth';
+import { useContext } from 'react';
+import { AppContext } from '@/contexts/app.context';
 
 export default function Signin() {
+  const { setIsAuthenticated, setProfile } = useContext(AppContext);
   const {
     register,
     handleSubmit,
@@ -29,6 +31,11 @@ export default function Signin() {
     onSuccess: (data) => {
       setAccessTokenToLS(data.data.content.token);
       setProfileToLS(data.data.content.user);
+
+      // Cập nhật context để header hiển thị ngay lập tức
+      setIsAuthenticated(true);
+      setProfile(data.data.content.user);
+
       navigate(path.home);
     }
   });
