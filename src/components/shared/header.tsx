@@ -12,7 +12,7 @@ export default function Header() {
   const [showUserMenu, setShowUserMenu] = useState(false);
 
   return (
-    <div className='bg-transparent w-full z-50   text-[#7b7b7b] border-b  py-1'>
+    <div className='bg-transparent w-full z-50   text-[#7b7b7b]   py-1'>
       <div className='container'>
         <div className='px-0.5 flex items-center justify-between py-4 '>
           <div className='flex items-center gap-4'>

@@ -8,6 +8,7 @@ import HomePage from '@/pages/HomePage/home-page';
 import Signin from '@/pages/signin-page';
 import Signup from '@/pages/signup-page';
 import Jobs from '@/pages/jobs';
+import JobTypePage from '@/pages/JobTypePage';
 
 export default function useReactRouter() {
   const routeElements = useRoutes([
@@ -21,6 +22,15 @@ export default function useReactRouter() {
             <HomePage />
           </MainLayout>
         </Suspense>
+      )
+    },
+
+    {
+      path: '/jobtypepage',
+      element: (
+        <MainLayout>
+          <JobTypePage />
+        </MainLayout>
       )
     },
     {

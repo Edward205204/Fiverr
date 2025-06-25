@@ -2,7 +2,11 @@ import { JobsAPI } from '@/apis/jobs.api';
 import JobTypeList from '@/components/shared/job-type-list';
 import useQueryConfig from '@/hooks/use-query-config';
 import { useQuery } from '@tanstack/react-query';
-
+import { Switch } from '@/components/ui/switch';
+import { Button } from '@/components/ui/button';
+import { ChevronDown } from 'lucide-react';
+const dropdownItems = ['Category', 'Service Options', 'Seller Details', 'Budget', 'Delivery Time'];
+const toggleItems = ['Pro services', 'Local sellers', 'Online sellers'];
 export default function Jobs() {
   const queryConfig = useQueryConfig();
   const { data } = useQuery({
@@ -14,11 +18,38 @@ export default function Jobs() {
         keyword: queryConfig.keyword || ''
       })
   });
-
   console.log(data);
   return (
-    <div>
+    <div className='py-1'>
       <JobTypeList />
+
+      <div className='container'>
+        <div className='py-4 text-3xl px-4 font-bold'>Result for "{queryConfig.keyword}"</div>
+      </div>
+      <div className='  px-4 py-4 border-b bg-white'>
+        <div className='container'>
+          <div className=' items-center flex flex-wrap gap-4'>
+            {dropdownItems.map((label) => (
+              <Button
+                key={label}
+                variant='outline'
+                className='flex items-center gap-1 rounded-full text-sm font-normal'
+              >
+                {label}
+                <ChevronDown size={16} />
+              </Button>
+            ))}
+            <div className='flex flex-wrap items-center gap-6 ml-auto'>
+              {toggleItems.map((label) => (
+                <label key={label} className='flex items-center gap-2 text-sm text-muted-foreground'>
+                  <Switch />
+                  {label}
+                </label>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

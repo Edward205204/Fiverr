@@ -1,11 +1,13 @@
 import { JobsAPI } from '@/apis/jobs.api';
 import { useQuery } from '@tanstack/react-query';
+import JobTypeTooltip from './job-type-tooltip';
 
 export default function JobTypeList() {
   const { data } = useQuery({
     queryKey: ['job-types'],
     queryFn: () => JobsAPI.getJobTypes()
   });
+
   const jobTypeList = data?.data.content;
 
   if (!jobTypeList) return null;
@@ -14,9 +16,9 @@ export default function JobTypeList() {
     <div>
       <div className='py-2 border-b border-t border-[#e0e0e0]'>
         <div className='container'>
-          <div className=' w-full flex items-center gap-4 justify-between'>
+          <div className='w-full flex items-center gap-4 justify-between'>
             {jobTypeList.map((item) => (
-              <div className='text-sm font-medium text-[#7b7b7b] hover:cursor-pointer'>{item.tenLoaiCongViec}</div>
+              <JobTypeTooltip key={item.id} item={item} />
             ))}
           </div>
         </div>
