@@ -9,6 +9,8 @@ import Signin from '@/pages/signin-page';
 import Signup from '@/pages/signup-page';
 import Jobs from '@/pages/jobs';
 import JobTypePage from '@/pages/JobTypePage';
+import ManageUserPage from '@/pages/manage-user-page';
+import ManagerLayout from '@/layouts/manager-layout';
 
 export default function useReactRouter() {
   const routeElements = useRoutes([
@@ -62,7 +64,16 @@ export default function useReactRouter() {
     {
       path: '',
       element: <ProtectedRoute />,
-      children: []
+      children: [
+        {
+          path: path.manage_user,
+          element: (
+            <ManagerLayout>
+              <ManageUserPage />
+            </ManagerLayout>
+          )
+        }
+      ]
     }
   ]);
   return routeElements;

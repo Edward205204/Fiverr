@@ -6,11 +6,15 @@ import { AppContext } from '@/contexts/app.context';
 import useLogout from '@/hooks/use-logout';
 import useQueryConfig from '@/hooks/use-query-config';
 
-export default function Header() {
+interface HeaderProps {
+  searchBarStatus?: boolean;
+}
+
+export default function Header({ searchBarStatus = true }: HeaderProps) {
   const { isAuthenticated, profile } = useContext(AppContext);
   const { handleLogout } = useLogout();
   const [showUserMenu, setShowUserMenu] = useState(false);
-
+  const queryConfig = useQueryConfig().keyword;
   return (
     <div className='bg-transparent w-full z-50   text-[#7b7b7b]   py-1'>
       <div className='container'>
@@ -26,13 +30,15 @@ export default function Header() {
                 </g>
               </svg>
             </Link>
-            <SearchBar
-              placeholder='Search'
-              targetUrl={path.jobs}
-              queryKey='keyword'
-              className='w-full h-9 '
-              defaultValue={useQueryConfig().keyword}
-            />
+            {searchBarStatus && (
+              <SearchBar
+                placeholder='Search'
+                targetUrl={path.jobs}
+                queryKey='keyword'
+                className='w-full h-9 '
+                defaultValue={queryConfig}
+              />
+            )}
           </div>
           <div className='flex items-center gap-8'>
             <Link
