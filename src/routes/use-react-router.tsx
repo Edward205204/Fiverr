@@ -1,13 +1,16 @@
 import path from '@/constants/path';
 import { Suspense } from 'react';
 import { useRoutes } from 'react-router';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { ProtectedRoute, RejectedRoute } from './routes-guards';
 import MainLayout from '@/layouts/main-layout';
 import ErrorPage from '@/pages/error-page';
 import HomePage from '@/pages/HomePage/home-page';
 import Signin from '@/pages/signin-page';
 import Signup from '@/pages/signup-page';
+import Jobs from '@/pages/jobs';
+import JobTypePage from '@/pages/JobTypePage';
+import ManageUserPage from '@/pages/manage-user-page';
+import ManagerLayout from '@/layouts/manager-layout';
 
 export default function useReactRouter() {
   const routeElements = useRoutes([
@@ -23,9 +26,26 @@ export default function useReactRouter() {
         </Suspense>
       )
     },
+
+    {
+      path: path.job_type_page,
+      element: (
+        <MainLayout>
+          <JobTypePage />
+        </MainLayout>
+      )
+    },
     {
       path: '*',
       element: <ErrorPage />
+    },
+    {
+      path: path.jobs,
+      element: (
+        <MainLayout>
+          <Jobs />
+        </MainLayout>
+      )
     },
     {
       path: '',
@@ -43,8 +63,17 @@ export default function useReactRouter() {
     },
     {
       path: '',
-      element: <RejectedRoute />,
-      children: []
+      element: <ProtectedRoute />,
+      children: [
+        {
+          path: path.manage_user,
+          element: (
+            <ManagerLayout>
+              <ManageUserPage />
+            </ManagerLayout>
+          )
+        }
+      ]
     }
   ]);
   return routeElements;
