@@ -3,6 +3,10 @@ const path = {
   signup: '/signup',
   signin: '/signin',
   jobs: '/jobs',
-  job_type_page: '/jobtypepage'
+  job_type_page: '/job-type-page',
+  manage_user: '/manage-user',
+  manage_job: '/manage-job',
+  manage_job_type: '/manage-job-type',
+  manage_service: '/manage-service'
 };
 export default path;
