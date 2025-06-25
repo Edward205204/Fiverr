@@ -58,10 +58,10 @@ export default function HomeHeader() {
                         <p className='text-xs text-gray-500'>{profile.email}</p>
                       </div>
                       <Link
-                        to='/profile'
+                        to={path.manage_user}
                         className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors'
                       >
-                        Profile
+                        Manager
                       </Link>
 
                       <button
