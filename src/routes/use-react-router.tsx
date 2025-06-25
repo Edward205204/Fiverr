@@ -26,7 +26,7 @@ export default function useReactRouter() {
     },
 
     {
-      path: '/jobtypepage',
+      path: path.job_type_page,
       element: (
         <MainLayout>
           <JobTypePage />
