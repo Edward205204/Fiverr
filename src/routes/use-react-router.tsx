@@ -8,6 +8,7 @@ import ErrorPage from '@/pages/error-page';
 import HomePage from '@/pages/HomePage/home-page';
 import Signin from '@/pages/signin-page';
 import Signup from '@/pages/signup-page';
+import JobTypePage from '@/pages/JobTypePage/jobtype-page';
 
 export default function useReactRouter() {
   const routeElements = useRoutes([
@@ -40,6 +41,10 @@ export default function useReactRouter() {
           element: <Signup />
         }
       ]
+    },
+    {
+      path: '/jobtypepage',
+      element: <JobTypePage />
     },
     {
       path: '',
