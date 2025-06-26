@@ -2,12 +2,12 @@ import path from '@/constants/path';
 import { Link } from 'react-router';
 import { useContext, useState } from 'react';
 import { AppContext } from '@/contexts/app.context';
-import useLogout from '@/hooks/use-logout';
+import Avatar from '@/components/shared/avatar';
 
 export default function HomeHeader() {
   const { isAuthenticated, profile } = useContext(AppContext);
   const [showUserMenu, setShowUserMenu] = useState(false);
-  const { handleLogout } = useLogout();
+
   return (
     <header className='py-1 bg-transparent w-full z-50 absolute top-0 left-0 right-0 text-white'>
       <div className='container'>
@@ -51,27 +51,7 @@ export default function HomeHeader() {
                     </svg>
                   </button>
 
-                  {showUserMenu && (
-                    <div className='absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50'>
-                      <div className='px-4 py-2 border-b border-gray-100'>
-                        <p className='text-sm font-medium text-gray-900'>{profile.name}</p>
-                        <p className='text-xs text-gray-500'>{profile.email}</p>
-                      </div>
-                      <Link
-                        to={path.manage_user}
-                        className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors'
-                      >
-                        Manager
-                      </Link>
-
-                      <button
-                        onClick={handleLogout}
-                        className='block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors'
-                      >
-                        Logout
-                      </button>
-                    </div>
-                  )}
+                  {showUserMenu && <Avatar profile={profile} />}
                 </div>
               ) : (
                 <>

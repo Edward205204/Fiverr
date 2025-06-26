@@ -29,3 +29,11 @@ export interface JobDetail {
   id: number;
   tenChiTiet: string;
 }
+
+export interface JobResponse {
+  pageIndex: number;
+  pageSize: number;
+  totalRow: number;
+  keywords?: string;
+  data: Job[];
+}

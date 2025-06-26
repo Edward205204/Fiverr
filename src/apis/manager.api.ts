@@ -5,7 +5,8 @@ import http from '@/utils/http';
 const baseUrl = {
   changeRole: '/users',
   getUsers: 'users/phan-trang-tim-kiem',
-  getUserById: '/users'
+  getUserById: '/users',
+  deleteUser: '/users'
 };
 
 class ManagerApi {
@@ -21,6 +22,10 @@ class ManagerApi {
 
   getUserById = (userId: number) => {
     return http.get<Response<User>>(`${baseUrl.getUserById}/${userId}`);
+  };
+
+  deleteUser = (userId: number) => {
+    return http.delete<Response<string>>(baseUrl.deleteUser, { params: { id: userId } });
   };
 }
 
