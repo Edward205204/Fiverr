@@ -1,5 +1,4 @@
 import { JobsAPI } from '@/apis/jobs.api';
-import JobTypeList from '@/components/shared/job-type-list';
 import useQueryConfig from '@/hooks/use-query-config';
 import { useQuery } from '@tanstack/react-query';
 import { Switch } from '@/components/ui/switch';
@@ -21,8 +20,6 @@ export default function Jobs() {
   console.log(data);
   return (
     <div className='py-1'>
-      <JobTypeList />
-
       <div className='container'>
         <div className='py-4 text-3xl px-4 font-bold'>Result for "{queryConfig.keyword}"</div>
       </div>

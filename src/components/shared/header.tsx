@@ -5,6 +5,7 @@ import { useContext, useState } from 'react';
 import { AppContext } from '@/contexts/app.context';
 import useLogout from '@/hooks/use-logout';
 import useQueryConfig from '@/hooks/use-query-config';
+import JobTypeList from '@/components/shared/job-type-list';
 
 interface HeaderProps {
   searchBarStatus?: boolean;
@@ -16,8 +17,8 @@ export default function Header({ searchBarStatus = true }: HeaderProps) {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const queryConfig = useQueryConfig().keyword;
   return (
-    <div className='bg-transparent w-full z-50   text-[#7b7b7b]   py-1'>
-      <div className='container'>
+    <div className='bg-transparent w-full z-50  text-[#7b7b7b] py-1'>
+      <div className='container mx-auto'>
         <div className='px-0.5 flex items-center justify-between py-4 '>
           <div className='flex items-center gap-4'>
             <Link to={path.home}>
@@ -35,7 +36,7 @@ export default function Header({ searchBarStatus = true }: HeaderProps) {
                 placeholder='Search'
                 targetUrl={path.jobs}
                 queryKey='keyword'
-                className='w-full h-9 '
+                className='ml-10 w-200 h-9 '
                 defaultValue={queryConfig}
               />
             )}
@@ -105,6 +106,7 @@ export default function Header({ searchBarStatus = true }: HeaderProps) {
             )}
           </div>
         </div>
+        <JobTypeList />
       </div>
     </div>
   );

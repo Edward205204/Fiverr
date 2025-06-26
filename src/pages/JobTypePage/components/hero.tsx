@@ -56,12 +56,12 @@ const services = [
 
 export default function HeroComponent() {
   const [isOpen, setIsOpen] = useState(false);
-  const { visibleItems, canScrollLeft, canScrollRight, scrollLeft, scrollRight } = useScrollWindow(services, 4);
+  const { visibleItems, canScrollLeft, canScrollRight, scrollLeft, scrollRight } = useScrollWindow(services, 5);
 
   return (
     <>
       <section className='bg-white'>
-        <div className='max-w-7xl mx-auto relative mt-3 mb-3'>
+        <div className='container relative mt-3 mb-3'>
           <img src={poster} alt='' className='baner rounded-sm' />
           <div className='absolute text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center'>
             <h2 className='text-[30px] font-bold'>Graphics & Design</h2>
@@ -76,7 +76,7 @@ export default function HeroComponent() {
           </div>
         </div>
         <div className='Scroll'>
-          <div className='max-w-7xl mx-auto relative mt-3 mb-3'>
+          <div className='container relative mt-3 mb-3'>
             <div className='flex items-center justify-between mb-4 relative'>
               <h2 className='text-[30px] font-medium'>Most popular in Graphics & Design</h2>
               <div>
@@ -115,10 +115,7 @@ export default function HeroComponent() {
 
       {/* Modal hiển thị video */}
       {isOpen && (
-        <div
-          className='fixed inset-0 flex items-center justify-center bg-[#595959]/70 z-50'
-          //   onClick={() => setIsOpen(false)}
-        >
+        <div className='fixed inset-0 flex items-center justify-center bg-[#595959]/70 z-50'>
           <div className='bg-white/0 p-4 rounded-md relative max-w-3xl w-full' onClick={(e) => e.stopPropagation()}>
             <button
               onClick={() => setIsOpen(false)}

@@ -4,10 +4,12 @@ import http from '@/utils/http';
 
 const BASE_URL = {
   getJobs: '/cong-viec/phan-trang-tim-kiem',
-  getJobTypes: '/cong-viec/lay-menu-loai-cong-viec'
+  getJobTypes: '/cong-viec/lay-menu-loai-cong-viec',
+  getJobTypeDetail: '/cong-viec/lay-chi-tiet-loai-cong-viec'
 };
 export const JobsAPI = {
   getJobs: (params: { pageIndex: number; pageSize: number; keyword: string }) =>
     http.get<Response<Job[]>>(BASE_URL.getJobs, { params }),
-  getJobTypes: () => http.get<Response<JobTypeList[]>>(BASE_URL.getJobTypes)
+  getJobTypes: () => http.get<Response<JobTypeList[]>>(BASE_URL.getJobTypes),
+  getJobTypeDetail: () => http.get<Response<JobTypeList[]>>(`${BASE_URL.getJobTypeDetail}/${1}`)
 };

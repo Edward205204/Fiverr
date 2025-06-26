@@ -1,6 +1,6 @@
 export default function ServiceRelated() {
   return (
-    <div className='max-w-7xl mx-auto mt-3 mb-20 '>
+    <div className='container mt-3 mb-20 '>
       <h2 className='text-[30px] font-medium mt-4 mb-8 text-center'>Services Related To Graphics & Design</h2>
       <ul className='flex flex-wrap justify-center gap-3'>
         <li className='px-2 py-1 bg-[#EFEFF0] rounded-3xl no-underline hover:underline'>
