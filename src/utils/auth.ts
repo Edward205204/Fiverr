@@ -9,8 +9,7 @@ export function getAccessTokenFromLS() {
 }
 
 export function removeLocalStorage() {
-  // localStorage.removeItem('access_token');
-  localStorage.clear(); // -> xóa tất cả localStorage
+  localStorage.clear();
   const clearEvent = new Event('clearLS');
   LocalStorageEventTarget.dispatchEvent(clearEvent);
 }

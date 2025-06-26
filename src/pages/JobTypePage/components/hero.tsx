@@ -113,12 +113,8 @@ export default function HeroComponent() {
         </div>
       </section>
 
-      {/* Modal hiển thị video */}
       {isOpen && (
-        <div
-          className='fixed inset-0 flex items-center justify-center bg-[#595959]/70 z-50'
-          //   onClick={() => setIsOpen(false)}
-        >
+        <div className='fixed inset-0 flex items-center justify-center bg-[#595959]/70 z-50'>
           <div className='bg-white/0 p-4 rounded-md relative max-w-3xl w-full' onClick={(e) => e.stopPropagation()}>
             <button
               onClick={() => setIsOpen(false)}

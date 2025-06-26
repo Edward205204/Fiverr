@@ -35,24 +35,20 @@ export default function SearchBar({
     }
 
     if (targetUrl) {
-      // Tạo search params với encoding đúng cách
       const searchParams = new URLSearchParams();
 
-      // Copy các query params hiện tại
       Object.entries(queryConfig).forEach(([key, val]) => {
         if (val !== undefined && val !== null && val !== '') {
           searchParams.set(key, val.toString());
         }
       });
 
-      // Thêm keyword mới với encoding đúng
       if (value.trim()) {
         searchParams.set(queryKey, value.trim());
       } else {
         searchParams.delete(queryKey);
       }
 
-      // Reset về trang 1 khi search
       searchParams.set('pageIndex', '1');
 
       navigate({
