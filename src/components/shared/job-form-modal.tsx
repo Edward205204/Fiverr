@@ -59,7 +59,6 @@ export default function JobFormModal({ isOpen, onClose, initialData, mode }: Job
     }
   }, [isOpen, initialData, reset]);
 
-  // Mutation
   const mutation = useMutation({
     mutationFn: async (data: Job) => {
       let jobRes;
@@ -70,7 +69,6 @@ export default function JobFormModal({ isOpen, onClose, initialData, mode }: Job
       } else {
         throw new Error('Missing initialData for edit mode');
       }
-      // Nếu có file hình thì upload tiếp
       if (fileInputRef.current && fileInputRef.current.files && fileInputRef.current.files[0]) {
         const formData = new FormData();
         formData.append('formFile', fileInputRef.current.files[0]);
