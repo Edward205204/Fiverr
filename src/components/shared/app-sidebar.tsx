@@ -13,7 +13,6 @@ import {
 import { Link, useLocation } from 'react-router';
 import path from '@/constants/path';
 
-// Menu items.
 const items = [
   {
     title: 'Back to Home',

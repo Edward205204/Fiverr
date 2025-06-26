@@ -38,7 +38,6 @@ export default function JobTable({ keyword, pageIndex, pageSize }: JobTableProps
     pageIndex
   });
 
-  // Delete job mutation
   const deleteJobMutation = useMutation({
     mutationFn: (id: number) => jobApi.deleteJob(id),
     onSuccess: () => {

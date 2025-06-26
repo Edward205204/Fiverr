@@ -33,12 +33,10 @@ export default function UserTable({ keyword, pageIndex, pageSize }: UserTablePro
     pageIndex
   });
 
-  // Delete user mutation
   const deleteUserMutation = useMutation({
     mutationFn: (userId: number) => managerApi.deleteUser(userId),
     onSuccess: () => {
       toast.success('User deleted successfully!');
-      // Invalidate and refetch users list
       queryClient.invalidateQueries({ queryKey: ['users'] });
     },
     onError: (error) => {
@@ -105,7 +103,6 @@ export default function UserTable({ keyword, pageIndex, pageSize }: UserTablePro
   return (
     <>
       <div className='bg-white rounded-lg shadow-md overflow-hidden'>
-        {/* Table */}
         <div className='overflow-x-auto'>
           <table className='w-full'>
             <thead className='bg-gray-50 border-b border-gray-200'>
@@ -202,7 +199,6 @@ export default function UserTable({ keyword, pageIndex, pageSize }: UserTablePro
           </table>
         </div>
 
-        {/* Pagination */}
         <div className='bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6'>
           <div className='flex-1 flex justify-between sm:hidden'>
             <Button
@@ -236,7 +232,6 @@ export default function UserTable({ keyword, pageIndex, pageSize }: UserTablePro
           </div>
         </div>
 
-        {/* Page size selector */}
         <div className='bg-white px-4 py-3 border-t border-gray-200'>
           <div className='flex items-center space-x-2'>
             <span className='text-sm text-gray-700'>Show:</span>
@@ -255,7 +250,6 @@ export default function UserTable({ keyword, pageIndex, pageSize }: UserTablePro
         </div>
       </div>
 
-      {/* User Detail Modal */}
       <UserDetailModal userId={selectedUserId} isOpen={isModalOpen} onClose={handleCloseModal} />
     </>
   );
