@@ -40,7 +40,7 @@ class JobApi {
   };
 
   getJobsManager = (params: { pageIndex: number; pageSize: number; keyword: string }) =>
-    http.get<Response<Job[]>>(baseUrl.getJobs, { params });
+    http.get<Response<JobResponse>>(baseUrl.getJobs, { params });
   getJobTypes = () => http.get<Response<JobTypeList[]>>(baseUrl.getJobTypes);
 }
 

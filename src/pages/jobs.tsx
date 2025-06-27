@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
+import GigCard from '@/components/shared/gig-card';
 const dropdownItems = ['Category', 'Service Options', 'Seller Details', 'Budget', 'Delivery Time'];
 const toggleItems = ['Pro services', 'Local sellers', 'Online sellers'];
 export default function Jobs() {
@@ -18,7 +19,9 @@ export default function Jobs() {
         keyword: queryConfig.keyword || ''
       })
   });
-  console.log(data);
+
+  const GIGS = data?.data.content.data;
+
   return (
     <div className='py-1'>
       <JobTypeList />
@@ -47,6 +50,23 @@ export default function Jobs() {
                 </label>
               ))}
             </div>
+          </div>
+        </div>
+      </div>
+      <div className='py-6'>
+        <div className='container'>{!GIGS ? <>Empty</> : <div>{GIGS?.length} Services available</div>}</div>
+        <div className='container py-6'>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 '>
+            {GIGS?.map((gig) => (
+              <GigCard
+                key={gig.id}
+                danhGia={gig.danhGia}
+                giaTien={gig.giaTien}
+                hinhAnh={gig.hinhAnh}
+                saoCongViec={gig.saoCongViec}
+                tenCongViec={gig.tenCongViec}
+              />
+            ))}
           </div>
         </div>
       </div>
