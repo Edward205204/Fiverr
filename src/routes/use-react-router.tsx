@@ -13,6 +13,7 @@ import ManageUserPage from '@/pages/manage-user-page';
 import ManagerLayout from '@/layouts/manager-layout';
 import ManageJobPage from '@/pages/manage-job-page';
 import ManageJobTypePage from '@/pages/manage-job-type-page';
+import ManageServicePage from '@/pages/manage-service-page';
 
 export default function useReactRouter() {
   const routeElements = useRoutes([
@@ -88,6 +89,14 @@ export default function useReactRouter() {
           element: (
             <ManagerLayout>
               <ManageJobTypePage />
+            </ManagerLayout>
+          )
+        },
+        {
+          path: path.manage_service,
+          element: (
+            <ManagerLayout>
+              <ManageServicePage />
             </ManagerLayout>
           )
         }
