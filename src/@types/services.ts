@@ -15,12 +15,11 @@ export interface BinhLuan {
   saoBinhLuan: number;
 }
 
-export interface ThueCongViecResponse {
-  pageIndex: number;
-  pageSize: number;
-  totalRow: number;
+export interface ThueCongViecResponse extends Array<ThueCongViec> {
+  pageIndex?: number;
+  pageSize?: number;
+  totalRow?: number;
   keywords?: string;
-  data: ThueCongViec[];
 }
 
 export interface ThueCongViecCreateRequest {

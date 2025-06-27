@@ -50,8 +50,8 @@ export default function HireWorkTable({ onOpenModal }: HireWorkTableProps) {
     queryFn: () => servicesApi.getThueCongViecList({ pageIndex, pageSize, keyword })
   });
 
-  const hireWorks = data?.data.content.data || [];
-  const totalRows = data?.data.content.totalRow || 0;
+  const hireWorks = data?.data?.content || [];
+  const totalRows = data?.data?.content?.totalRow || 0;
 
   const { currentPage, totalPages, handlePageChange } = usePagination({
     totalRows,
@@ -156,7 +156,7 @@ export default function HireWorkTable({ onOpenModal }: HireWorkTableProps) {
               </tr>
             </thead>
             <tbody className='bg-white divide-y divide-gray-200'>
-              {hireWorks.map((hireWork) => (
+              {hireWorks.map((hireWork: ThueCongViec) => (
                 <tr key={hireWork.id} className='hover:bg-gray-50'>
                   <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>#{hireWork.id}</td>
                   <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>{hireWork.maCongViec}</td>
