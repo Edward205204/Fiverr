@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router';
 import { Button } from '@/components/ui/button';
 import { Plus, Briefcase, MessageSquare } from 'lucide-react';
-import { HireWorkTable, CommentTable, HireWorkFormModal, CommentFormModal } from '@/components/manage-service';
+import { HireWorkTable, CommentTable, HireWorkFormModal, CommentFormModal } from '@/pages/ManageServicePage/components';
 
 export default function ManageServicePage() {
   const [, setSearchParams] = useSearchParams();

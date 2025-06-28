@@ -2,7 +2,12 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router';
 import { Button } from '@/components/ui/button';
 import { Plus, Briefcase, Layers } from 'lucide-react';
-import { JobTypeTable, JobTypeGroupTable, JobTypeFormModal, JobTypeGroupFormModal } from '@/components/manage-job-type';
+import {
+  JobTypeTable,
+  JobTypeGroupTable,
+  JobTypeFormModal,
+  JobTypeGroupFormModal
+} from '@/pages/ManageJobTypePage/components';
 
 export default function ManageJobTypePage() {
   const [, setSearchParams] = useSearchParams();

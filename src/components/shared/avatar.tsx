@@ -13,6 +13,9 @@ export default function Avatar({ profile }: { profile: User }) {
         <p className='text-sm font-medium text-gray-900'>{profile.name}</p>
         <p className='text-xs text-gray-500'>{profile.email}</p>
       </div>
+      <Link to={path.profile} className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors'>
+        Profile
+      </Link>
       <Link to={path.manage_user} className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors'>
         Manager
       </Link>
