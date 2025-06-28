@@ -4,11 +4,8 @@ import SearchBar from './search';
 import { useContext, useState } from 'react';
 import { AppContext } from '@/contexts/app.context';
 import useQueryConfig from '@/hooks/use-query-config';
-<<<<<<< HEAD
 import JobTypeList from '@/components/shared/job-type-list';
-=======
 import Avatar from './avatar';
->>>>>>> 9ba3a58 (feat: add manage job pages)
 
 interface HeaderProps {
   searchBarStatus?: boolean;
