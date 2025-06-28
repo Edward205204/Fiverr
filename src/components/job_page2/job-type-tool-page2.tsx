@@ -14,19 +14,19 @@ export default function JobTypeToolPage2({ item }: JobTypeTooltipProps) {
                 <div className=''>
                   <div
                     key={nhom.id}
-                    className='job-group p-4 border rounded shadow hover:shadow-lg transition-shadow duration-200 w-full h-[300px]'
+                    className='job-group transition-shadow duration-200 w-full h-[300px]'
                   >
                     <img
                       src={nhom.hinhAnh}
                       alt={nhom.tenNhom}
-                      className='w-full h-[180px] mb-2 object-cover rounded group-hover:scale-105 transition-transform duration-200'
+                      className='w-full h-[180px] mb-2 object-cover rounded-sm transition-transform duration-200'
                     />
-                    <h3 className='font-semibold mb-2 group-hover:text-primary transition-colors duration-200'>
+                    <h2 className='font-semibold mb-2 group-hover:text-primary transition-colors duration-200 text-xl'>
                       {nhom.tenNhom}
-                    </h3>
-                    <ul className='list-inside text-sm'>
+                    </h2>
+                    <ul className='list-inside text-base text-[#666767]  '>
                       {nhom.dsChiTietLoai.map((chiTiet) => (
-                        <li key={chiTiet.id} className='group-hover:text-primary transition-colors duration-200'>
+                        <li key={chiTiet.id} className='group-hover:text-primary hover:bg-gray-100 mt-1 mb-1 transition-colors duration-200'>
                           {chiTiet.tenChiTiet}
                         </li>
                       ))}
