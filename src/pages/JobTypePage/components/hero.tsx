@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 import ServiceItem from '../components/service_item';
+import JobTypeList from '@/components/shared/job-type-list';
 
 const services = [
   {
@@ -61,7 +62,7 @@ export default function HeroComponent() {
   return (
     <>
       <section className='bg-white'>
-        <div className='container relative mt-3 mb-3'>
+        <div className='max-w-7xl mx-auto relative mt-3 mb-3'>
           <img src={poster} alt='' className='baner rounded-sm' />
           <div className='absolute text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center'>
             <h2 className='text-[30px] font-bold'>Graphics & Design</h2>

@@ -16,9 +16,9 @@ export default function JobTypeListPage2() {
     <div>
       <>
         <div className='container'>
-            {jobTypeList.map((item) => (
-              <JobTypeToolPage2 key={item.id} item={item} />
-            ))}
+          {jobTypeList.map((item) => (
+            <JobTypeToolPage2 key={item.id} item={item} />
+          ))}
         </div>
       </>
     </div>

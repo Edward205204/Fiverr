@@ -1,5 +1,5 @@
 import { Job, JobResponse } from '@/@types/jobs';
-import { JobDetail, JobTypeList } from '@/@types/jobs';
+import { JobDetail, JobTypeList, JobGroup, JobDetailPage2 } from '@/@types/jobs';
 import Response from '@/@types/response';
 import http from '@/utils/http';
 
@@ -9,7 +9,8 @@ const baseUrl = {
   jobDetail: '/cong-viec',
   uploadImage: '/cong-viec/upload-hinh-cong-viec',
   getJobs: '/cong-viec/phan-trang-tim-kiem',
-  getJobTypes: '/cong-viec/lay-menu-loai-cong-viec'
+  getJobTypes: '/cong-viec/lay-menu-loai-cong-viec',
+  getJobTypeById: '/cong-viec/lay-loai-cong-viec-theo-id'
 };
 
 class JobApi {
