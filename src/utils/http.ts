@@ -19,7 +19,6 @@ class Http {
     });
     this.instance.interceptors.request.use((config) => {
       if (this.accessToken && config.headers) {
-        // Bearer
         config.headers.token = `${this.accessToken}`;
       }
 
