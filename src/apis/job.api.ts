@@ -1,5 +1,5 @@
 import { Job, JobResponse } from '@/@types/jobs';
-import { JobDetail, JobTypeList, JobGroup, JobDetailPage2 } from '@/@types/jobs';
+import { JobDetail, JobTypeList} from '@/@types/jobs';
 import Response from '@/@types/response';
 import http from '@/utils/http';
 

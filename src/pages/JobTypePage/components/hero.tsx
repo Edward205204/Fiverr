@@ -14,7 +14,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 import ServiceItem from '../components/service_item';
-import JobTypeList from '@/components/shared/job-type-list';
 
 const services = [
   {
