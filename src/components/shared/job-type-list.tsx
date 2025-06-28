@@ -1,11 +1,11 @@
-import { JobsAPI } from '@/apis/jobs.api';
 import { useQuery } from '@tanstack/react-query';
 import JobTypeTooltip from './job-type-tooltip';
+import jobApi from '@/apis/job.api';
 
 export default function JobTypeList() {
   const { data } = useQuery({
     queryKey: ['job-types'],
-    queryFn: () => JobsAPI.getJobTypes()
+    queryFn: () => jobApi.getJobTypes()
   });
 
   const jobTypeList = data?.data.content;

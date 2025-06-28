@@ -7,6 +7,7 @@ const path = {
   manage_user: '/manage-user',
   manage_job: '/manage-job',
   manage_job_type: '/manage-job-type',
-  manage_service: '/manage-service'
+  manage_service: '/manage-service',
+  profile: '/profile'
 };
 export default path;

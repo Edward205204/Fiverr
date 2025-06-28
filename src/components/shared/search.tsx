@@ -1,7 +1,7 @@
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
-import { createSearchParams, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import useQueryConfig from '@/hooks/use-query-config';
 import useInputSearch from '@/hooks/use-input-search';
 import { cn } from '@/lib/utils';
@@ -9,11 +9,12 @@ import { cn } from '@/lib/utils';
 interface SearchBarProps {
   placeholder: string;
   onSearch?: (searchValue: string) => void;
-  targetUrl: string;
+  targetUrl?: string;
   queryKey?: string;
   className?: string;
   defaultValue?: string;
 }
+
 export default function SearchBar({
   placeholder,
   onSearch,
@@ -25,6 +26,7 @@ export default function SearchBar({
   const queryConfig = useQueryConfig();
   const { register, handleSubmit } = useInputSearch();
   const navigate = useNavigate();
+
   const onSearchSubmit = (data: { search?: string }) => {
     const value = data.search?.toString() || '';
     if (onSearch) {
@@ -32,10 +34,28 @@ export default function SearchBar({
       return;
     }
 
-    navigate({
-      pathname: targetUrl,
-      search: createSearchParams({ ...queryConfig, [queryKey]: value }).toString()
-    });
+    if (targetUrl) {
+      const searchParams = new URLSearchParams();
+
+      Object.entries(queryConfig).forEach(([key, val]) => {
+        if (val !== undefined && val !== null && val !== '') {
+          searchParams.set(key, val.toString());
+        }
+      });
+
+      if (value.trim()) {
+        searchParams.set(queryKey, value.trim());
+      } else {
+        searchParams.delete(queryKey);
+      }
+
+      searchParams.set('pageIndex', '1');
+
+      navigate({
+        pathname: targetUrl,
+        search: searchParams.toString()
+      });
+    }
   };
 
   return (

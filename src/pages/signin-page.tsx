@@ -32,7 +32,6 @@ export default function Signin() {
       setAccessTokenToLS(data.data.content.token);
       setProfileToLS(data.data.content.user);
 
-      // Cập nhật context để header hiển thị ngay lập tức
       setIsAuthenticated(true);
       setProfile(data.data.content.user);
 
