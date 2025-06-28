@@ -1,4 +1,5 @@
-import { JobsAPI } from '@/apis/jobs.api';
+import jobApi from '@/apis/job.api';
+import JobTypeList from '@/components/shared/job-type-list';
 import useQueryConfig from '@/hooks/use-query-config';
 import { useQuery } from '@tanstack/react-query';
 import { Switch } from '@/components/ui/switch';
@@ -11,7 +12,7 @@ export default function Jobs() {
   const { data } = useQuery({
     queryKey: ['jobs', queryConfig.pageIndex, queryConfig.pageSize, queryConfig.keyword],
     queryFn: () =>
-      JobsAPI.getJobs({
+      jobApi.getJobsManager({
         pageIndex: Number(queryConfig.pageIndex),
         pageSize: Number(queryConfig.pageSize),
         keyword: queryConfig.keyword || ''

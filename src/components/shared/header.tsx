@@ -3,9 +3,12 @@ import { Link } from 'react-router';
 import SearchBar from './search';
 import { useContext, useState } from 'react';
 import { AppContext } from '@/contexts/app.context';
-import useLogout from '@/hooks/use-logout';
 import useQueryConfig from '@/hooks/use-query-config';
+<<<<<<< HEAD
 import JobTypeList from '@/components/shared/job-type-list';
+=======
+import Avatar from './avatar';
+>>>>>>> 9ba3a58 (feat: add manage job pages)
 
 interface HeaderProps {
   searchBarStatus?: boolean;
@@ -13,7 +16,7 @@ interface HeaderProps {
 
 export default function Header({ searchBarStatus = true }: HeaderProps) {
   const { isAuthenticated, profile } = useContext(AppContext);
-  const { handleLogout } = useLogout();
+
   const [showUserMenu, setShowUserMenu] = useState(false);
   const queryConfig = useQueryConfig().keyword;
   return (
@@ -69,27 +72,7 @@ export default function Header({ searchBarStatus = true }: HeaderProps) {
                   </svg>
                 </button>
 
-                {showUserMenu && (
-                  <div className='absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50'>
-                    <div className='px-4 py-2 border-b border-gray-100'>
-                      <p className='text-sm font-medium text-gray-900'>{profile.name}</p>
-                      <p className='text-xs text-gray-500'>{profile.email}</p>
-                    </div>
-                    <Link
-                      to='/profile'
-                      className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors'
-                    >
-                      Profile
-                    </Link>
-
-                    <button
-                      onClick={handleLogout}
-                      className='block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors'
-                    >
-                      Logout
-                    </button>
-                  </div>
-                )}
+                {showUserMenu && <Avatar profile={profile} />}
               </div>
             ) : (
               <>
