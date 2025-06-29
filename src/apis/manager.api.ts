@@ -1,4 +1,4 @@
-import User, { UserResponse } from '@/@types/user';
+import { User, UserResponse } from '@/@types/user';
 import Response from '@/@types/response';
 import http from '@/utils/http';
 

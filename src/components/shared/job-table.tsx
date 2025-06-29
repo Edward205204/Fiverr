@@ -240,9 +240,7 @@ export default function JobTable({ keyword, pageIndex, pageSize }: JobTableProps
           </div>
         </div>
       </div>
-      {/* Job Detail Modal */}
       <JobDetailModal jobId={selectedJobId} isOpen={isDetailModalOpen} onClose={handleCloseDetailModal} />
-      {/* Job Form Modal */}
       <JobFormModal
         isOpen={isFormModalOpen}
         onClose={handleCloseFormModal}

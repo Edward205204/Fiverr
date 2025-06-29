@@ -15,6 +15,7 @@ import ManageJobPage from '@/pages/manage-job-page';
 import ManageJobTypePage from '@/pages/ManageJobTypePage/manage-job-type-page';
 import ManageServicePage from '@/pages/ManageServicePage/manage-service-page';
 import ProfilePage from '@/pages/ProfilePage';
+import JobTypePage3 from '@/pages/JobTypePage3';
 
 export default function useReactRouter() {
   const routeElements = useRoutes([
@@ -106,6 +107,14 @@ export default function useReactRouter() {
           element: (
             <MainLayout>
               <ProfilePage />
+            </MainLayout>
+          )
+        },
+        {
+          path: path.job_detail,
+          element: (
+            <MainLayout>
+              <JobTypePage3 />
             </MainLayout>
           )
         }

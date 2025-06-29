@@ -5,7 +5,6 @@ const VideoModal: React.FC = () => {
 
   return (
     <>
-      {/* Nút mở modal */}
       <div
         onClick={() => setIsOpen(true)}
         style={{ cursor: 'pointer', background: '#ccc', padding: '10px', display: 'inline-block' }}
@@ -13,7 +12,6 @@ const VideoModal: React.FC = () => {
         Bấm để xem video
       </div>
 
-      {/* Modal video */}
       {isOpen && (
         <div
           className='modal-package kmDclUB general-video-modal XQMJeMe'

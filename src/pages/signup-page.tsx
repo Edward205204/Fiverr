@@ -28,15 +28,12 @@ export default function Signup() {
   });
   const signUpMutation = useMutation({
     mutationFn: authApi.signUp,
-    onSuccess: (data) => {
-      console.log(data);
+    onSuccess: () => {
       navigate('/signin');
     }
   });
-  console.log('ERRORS:', errors);
 
   const onSubmit = async (values: RegisterSchemaType) => {
-    console.log('ok');
     try {
       await signUpMutation.mutateAsync(values);
     } catch (error) {
@@ -48,7 +45,6 @@ export default function Signup() {
 
   return (
     <div className='min-h-screen flex items-center justify-center bg-gradient-to-br  bg-[#1F1F2D] relative'>
-      {/* Logo */}
       <div className='absolute top-6 left-6'>
         <Link to={path.home} className='flex items-center gap-2'>
           <div className='w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center'>

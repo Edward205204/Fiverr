@@ -8,6 +8,8 @@ import { ChevronDown } from 'lucide-react';
 import GigCard from '@/components/shared/gig-card';
 import { usePagination } from '@/hooks/use-pagination';
 import Pagination from '@/components/ui/pagination';
+import { Link } from 'react-router';
+import path from '@/constants/path';
 
 const dropdownItems = ['Category', 'Service Options', 'Seller Details', 'Budget', 'Delivery Time'];
 const toggleItems = ['Pro services', 'Local sellers', 'Online sellers'];
@@ -71,14 +73,16 @@ export default function Jobs() {
         <div className='container py-6'>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 '>
             {GIGS?.map((gig) => (
-              <GigCard
-                key={gig.id}
-                danhGia={gig.danhGia}
-                giaTien={gig.giaTien}
-                hinhAnh={gig.hinhAnh}
-                saoCongViec={gig.saoCongViec}
-                tenCongViec={gig.tenCongViec}
-              />
+              <Link to={`${path.job_detail}?maCongViec=${gig.id}`}>
+                <GigCard
+                  key={gig.id}
+                  danhGia={gig.danhGia}
+                  giaTien={gig.giaTien}
+                  hinhAnh={gig.hinhAnh}
+                  saoCongViec={gig.saoCongViec}
+                  tenCongViec={gig.tenCongViec}
+                />
+              </Link>
             ))}
           </div>
         </div>

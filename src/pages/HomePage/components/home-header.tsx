@@ -24,11 +24,8 @@ export default function HomeHeader() {
           </Link>
           <div>
             <div className='flex items-center gap-8'>
-              <Link
-                to={'https://www.fiverr.com/start_selling?source=top_nav'}
-                className='py-[2px] hover:border-b hover:border-b-white transition-all duration-100'
-              >
-                Become a seller
+              <Link to={path.jobs} className='py-[2px] hover:border-b hover:border-b-white transition-all duration-100'>
+                Find a job
               </Link>
 
               {isAuthenticated && profile ? (
@@ -38,7 +35,13 @@ export default function HomeHeader() {
                     className='flex items-center gap-2 py-1 px-3 rounded-lg hover:bg-white/10 transition-all duration-200'
                   >
                     <div className='w-8 h-8 bg-green-500 rounded-full flex items-center justify-center'>
-                      <span className='text-white font-bold text-sm'>{profile.name.charAt(0).toUpperCase()}</span>
+                      <>
+                        {profile.avatar ? (
+                          <img src={profile.avatar} alt='avatar' className='w-8 h-8 rounded-full object-cover' />
+                        ) : (
+                          <span className=' text-white font-bold text-sm'>{profile.name.charAt(0).toUpperCase()}</span>
+                        )}
+                      </>
                     </div>
                     <span className='text-white font-medium'>{profile.name}</span>
                     <svg
@@ -71,7 +74,6 @@ export default function HomeHeader() {
         </div>
       </div>
 
-      {/* Overlay để đóng menu khi click bên ngoài */}
       {showUserMenu && <div className='fixed inset-0 z-40' onClick={() => setShowUserMenu(false)} />}
     </header>
   );

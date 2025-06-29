@@ -1,4 +1,4 @@
-import User from '@/@types/user';
+import { User } from '@/@types/user';
 import path from '@/constants/path';
 import useLogout from '@/hooks/use-logout';
 

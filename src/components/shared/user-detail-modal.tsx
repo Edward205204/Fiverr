@@ -44,7 +44,6 @@ export default function UserDetailModal({ userId, isOpen, onClose }: UserDetailM
   return (
     <div className='fixed inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-50 p-4'>
       <div className='bg-white rounded-xl shadow-2xl border border-gray-200 max-w-lg w-full'>
-        {/* Header */}
         <div className='flex items-center justify-between p-4 border-b border-gray-100'>
           <h2 className='text-lg font-semibold text-gray-900'>User Details</h2>
           <Button variant='ghost' size='sm' onClick={onClose} className='text-gray-400 hover:text-gray-600 h-8 w-8 p-0'>
@@ -52,7 +51,6 @@ export default function UserDetailModal({ userId, isOpen, onClose }: UserDetailM
           </Button>
         </div>
 
-        {/* Content */}
         <div className='p-4'>
           {isLoading && (
             <div className='flex items-center justify-center py-6'>
@@ -68,7 +66,6 @@ export default function UserDetailModal({ userId, isOpen, onClose }: UserDetailM
 
           {user && (
             <div className='space-y-4'>
-              {/* Avatar and Basic Info */}
               <div className='flex items-center space-x-4'>
                 <div className='flex-shrink-0'>
                   {user.avatar ? (
@@ -92,7 +89,6 @@ export default function UserDetailModal({ userId, isOpen, onClose }: UserDetailM
                 </div>
               </div>
 
-              {/* Contact Information */}
               <div className='bg-gray-50 rounded-lg p-3'>
                 <h4 className='text-sm font-semibold text-gray-900 mb-2'>Contact Information</h4>
                 <div className='space-y-1 text-sm'>
@@ -111,7 +107,6 @@ export default function UserDetailModal({ userId, isOpen, onClose }: UserDetailM
                 </div>
               </div>
 
-              {/* Skills */}
               <div className='bg-gray-50 rounded-lg p-3'>
                 <h4 className='text-sm font-semibold text-gray-900 mb-2'>Skills</h4>
                 {user.skill && user.skill.length > 0 ? (
@@ -133,7 +128,6 @@ export default function UserDetailModal({ userId, isOpen, onClose }: UserDetailM
                 )}
               </div>
 
-              {/* Certifications */}
               <div className='bg-gray-50 rounded-lg p-3'>
                 <h4 className='text-sm font-semibold text-gray-900 mb-2'>Certifications</h4>
                 {user.certification && user.certification.length > 0 ? (
@@ -155,7 +149,6 @@ export default function UserDetailModal({ userId, isOpen, onClose }: UserDetailM
                 )}
               </div>
 
-              {/* Booking Jobs */}
               <div className='bg-gray-50 rounded-lg p-3'>
                 <h4 className='text-sm font-semibold text-gray-900 mb-2'>Booking Jobs</h4>
                 {user.bookingJob && user.bookingJob.length > 0 ? (
@@ -177,7 +170,6 @@ export default function UserDetailModal({ userId, isOpen, onClose }: UserDetailM
           )}
         </div>
 
-        {/* Footer */}
         <div className='flex justify-end p-4 border-t border-gray-100'>
           <Button variant='outline' size='sm' onClick={onClose}>
             Close
