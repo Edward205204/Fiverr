@@ -1,15 +1,19 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import userApi from '@/apis/user.api';
 import UserEditModal from '@/components/shared/user-edit-modal';
 import AvatarUpload from '@/components/shared/avatar-upload';
+import HiredJobDetailModal from '@/components/shared/hired-job-detail-modal';
 import { Button } from '@/components/ui/button';
-import { AppContext } from '@/contexts/app.context';
+import { HiredJob } from '@/@types/user';
 
 const UserProfile = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const { profile } = useContext(AppContext);
-  const userId = profile?.id;
+  const [selectedHiredJob, setSelectedHiredJob] = useState<HiredJob | null>(null);
+  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+
+  // Giả sử user ID là 1 (có thể lấy từ context hoặc localStorage)
+  const userId = 1;
 
   const { data: userData, isLoading: userLoading } = useQuery({
     queryKey: ['user', userId],
@@ -34,6 +38,16 @@ const UserProfile = () => {
     if (!birthday || birthday === '0') return 'N/A';
     const date = new Date(birthday);
     return date.toLocaleDateString('vi-VN');
+  };
+
+  const handleViewDetail = (hiredJob: HiredJob) => {
+    setSelectedHiredJob(hiredJob);
+    setIsDetailModalOpen(true);
+  };
+
+  const handleCloseDetailModal = () => {
+    setIsDetailModalOpen(false);
+    setSelectedHiredJob(null);
   };
 
   if (userLoading) {
@@ -181,7 +195,12 @@ const UserProfile = () => {
                       <p className='text-xs text-gray-400 mt-1'>Ngày thuê: {formatDate(hiredJob.ngayThue)}</p>
                     </div>
                     <div className='flex justify-between items-center mt-2'>
-                      <button className='text-sm text-blue-600 hover:underline'>Xem chi tiết</button>
+                      <button
+                        className='text-sm text-blue-600 hover:underline'
+                        onClick={() => handleViewDetail(hiredJob)}
+                      >
+                        Xem chi tiết
+                      </button>
                       <div className='flex items-center gap-2'>
                         <span
                           className={`px-2 py-1 rounded text-xs ${
@@ -209,6 +228,9 @@ const UserProfile = () => {
 
       {/* Edit Modal */}
       {user && <UserEditModal user={user} isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)} />}
+
+      {/* Hired Job Detail Modal */}
+      <HiredJobDetailModal hiredJob={selectedHiredJob} isOpen={isDetailModalOpen} onClose={handleCloseDetailModal} />
     </div>
   );
 };
