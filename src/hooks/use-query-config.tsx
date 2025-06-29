@@ -8,7 +8,8 @@ export default function useQueryConfig() {
       keyword: searchParam.keyword,
       pageSize: searchParam.pageSize || '10',
       pageIndex: searchParam.pageIndex || '1',
-      jobTypeId: searchParam.jobTypeId
+      jobTypeId: searchParam.jobTypeId,
+      maCongViec: searchParam.maCongViec
     },
     isUndefined
   );
