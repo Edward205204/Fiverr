@@ -1,6 +1,9 @@
 import { useFloating, useHover, useInteractions, offset, flip, shift, useDismiss } from '@floating-ui/react';
 import { useState } from 'react';
 import type { JobTypeList } from '@/@types/jobs';
+import { ArrowRightIcon } from 'lucide-react';
+import { Link } from 'react-router';
+import path from '@/constants/path';
 
 interface JobTypeTooltipProps {
   item: JobTypeList;
@@ -57,27 +60,37 @@ export default function JobTypeTooltip({ item }: JobTypeTooltipProps) {
               empty
             </div>
           ) : (
-            <div className='flex gap-8'>
-              <div className='flex-1'>
-                {leftColumn.map((tenChiTiet, index) => (
-                  <div
-                    key={index}
-                    className='text-sm text-gray-700 hover:text-[#1dbf73] hover:cursor-pointer py-2 transition-colors duration-150'
-                  >
-                    {tenChiTiet}
-                  </div>
-                ))}
-              </div>
+            <div className='flex flex-col gap-2'>
+              <div className='flex gap-8'>
+                <div className='flex-1'>
+                  {leftColumn.map((tenChiTiet, index) => (
+                    <div
+                      key={index}
+                      className='text-sm text-gray-700 hover:text-[#1dbf73] hover:cursor-pointer py-2 transition-colors duration-150'
+                    >
+                      {tenChiTiet}
+                    </div>
+                  ))}
+                </div>
 
-              <div className='flex-1'>
-                {rightColumn.map((tenChiTiet, index) => (
-                  <div
-                    key={index}
-                    className='text-sm text-gray-700 hover:text-[#1dbf73] hover:cursor-pointer py-2 transition-colors duration-150'
-                  >
-                    {tenChiTiet}
-                  </div>
-                ))}
+                <div className='flex-1'>
+                  {rightColumn.map((tenChiTiet, index) => (
+                    <div
+                      key={index}
+                      className='text-sm text-gray-700 hover:text-[#1dbf73] hover:cursor-pointer py-2 transition-colors duration-150'
+                    >
+                      {tenChiTiet}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className='flex justify-end'>
+                <Link
+                  to={`${path.job_type_page}?jobTypeId=${item.id}`}
+                  className='text-sm text-gray-700 hover:text-[#1dbf73] hover:cursor-pointer py-2 px-4 transition-colors duration-150 flex items-center gap-2'
+                >
+                  More <ArrowRightIcon className='w-4 h-4' />
+                </Link>
               </div>
             </div>
           )}

@@ -231,7 +231,6 @@ export default function HireWorkTable({ onOpenModal }: HireWorkTableProps) {
         )}
       </div>
 
-      {/* Modals */}
       <HireWorkFormModal isOpen={isEditModalOpen} onClose={handleCloseEditModal} editingHireWork={editingHireWork} />
       <HireWorkDetailModal isOpen={isDetailModalOpen} onClose={handleCloseDetailModal} hireWork={selectedHireWork} />
     </>

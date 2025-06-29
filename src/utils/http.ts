@@ -12,10 +12,10 @@ class Http {
     this.accessToken = getAccessTokenFromLS();
     this.instance = axios.create({
       baseURL: configs.baseURL,
-      timeout: 10000,
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      timeout: 10000
+      // headers: {
+      //   'Content-Type': 'application/json'
+      // }
     });
     this.instance.interceptors.request.use((config) => {
       if (this.accessToken && config.headers) {

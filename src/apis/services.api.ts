@@ -14,7 +14,6 @@ const baseUrl = {
 };
 
 class ServicesApi {
-  // ThueCongViec APIs
   getThueCongViecList = (params: { pageIndex: number; pageSize: number; keyword?: string }) => {
     return http.get<Response<ThueCongViecResponse>>(baseUrl.thueCongViec, { params });
   };
@@ -33,6 +32,10 @@ class ServicesApi {
 
   deleteThueCongViec = (id: number) => {
     return http.delete<Response<string>>(`${baseUrl.thueCongViec}/${id}`);
+  };
+
+  completeThueCongViec = (maThueCongViec: number) => {
+    return http.post<Response<string>>(`${baseUrl.thueCongViec}/hoan-thanh-cong-viec/${maThueCongViec}`);
   };
 
   // BinhLuan APIs

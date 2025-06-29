@@ -5,7 +5,6 @@ export default function Footer() {
   return (
     <footer className='bg-white text-gray-700 py-10 border-t'>
       <div className='max-w-7xl mx-auto px-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 text-sm'>
-        {/* Categories */}
         <div>
           <h3 className='font-semibold mb-2'>Categories</h3>
           <ul className='space-y-3'>
@@ -42,7 +41,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* About */}
         <div>
           <h3 className='font-semibold mb-2'>About</h3>
           <ul className='space-y-3'>
@@ -70,7 +68,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Support */}
         <div>
           <h3 className='font-semibold mb-2'>Support</h3>
           <ul className='space-y-3'>
@@ -89,7 +86,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Community */}
         <div>
           <h3 className='font-semibold mb-2'>Community</h3>
           <ul className='space-y-3'>
@@ -123,7 +119,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* More From Fiverr */}
         <div>
           <h3 className='font-semibold mb-2'>More From Fiverr</h3>
           <ul className='space-y-3'>
@@ -160,7 +155,6 @@ export default function Footer() {
 
       <Separator className='my-6' />
 
-      {/* Bottom */}
       <div className='max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500 gap-4'>
         <div>© Fiverr International Ltd. 2021</div>
         <div className='flex items-center gap-4'>

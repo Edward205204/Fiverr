@@ -106,7 +106,7 @@ export default function JobTypeGroupTable({ onOpenModal }: JobTypeGroupTableProp
     if (!file) return;
 
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('formFile', file);
 
     setUploadingImageId(groupId);
     uploadImageMutation.mutate({ id: groupId, formData });
