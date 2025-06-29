@@ -5,7 +5,7 @@ import UserEditModal from '@/components/shared/user-edit-modal';
 import AvatarUpload from '@/components/shared/avatar-upload';
 import HiredJobDetailModal from '@/components/shared/hired-job-detail-modal';
 import { Button } from '@/components/ui/button';
-import { HiredJob } from '@/@types/user';
+import { HiredJob, User } from '@/@types/user';
 import { AppContext } from '@/contexts/app.context';
 
 const UserProfile = () => {
@@ -13,7 +13,7 @@ const UserProfile = () => {
   const [selectedHiredJob, setSelectedHiredJob] = useState<HiredJob | null>(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const { profile } = useContext(AppContext);
-  const userId = profile?.id;
+  const userId = (profile as User).id;
 
   const { data: userData, isLoading: userLoading } = useQuery({
     queryKey: ['user', userId],

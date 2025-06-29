@@ -1,4 +1,4 @@
-import User from '@/@types/user';
+import { User } from '@/@types/user';
 import managerApi from '@/apis/manager.api';
 import SearchBar from '@/components/shared/search';
 import UserTable from '@/components/shared/user-table';

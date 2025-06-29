@@ -1,21 +1,22 @@
 import path from '@/constants/path';
-import { Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { useRoutes } from 'react-router';
 import { ProtectedRoute, RejectedRoute } from './routes-guards';
 import MainLayout from '@/layouts/main-layout';
 import ErrorPage from '@/pages/error-page';
-import HomePage from '@/pages/HomePage/home-page';
-import Signin from '@/pages/signin-page';
-import Signup from '@/pages/signup-page';
-import Jobs from '@/pages/jobs';
-import JobTypePage from '@/pages/JobTypePage';
-import ManageUserPage from '@/pages/manage-user-page';
-import ManagerLayout from '@/layouts/manager-layout';
 import ManageJobPage from '@/pages/manage-job-page';
 import ManageJobTypePage from '@/pages/ManageJobTypePage/manage-job-type-page';
 import ManageServicePage from '@/pages/ManageServicePage/manage-service-page';
 import ProfilePage from '@/pages/ProfilePage';
 import JobTypePage3 from '@/pages/JobTypePage3';
+
+const HomePage = lazy(() => import('@/pages/HomePage/home-page'));
+const Signin = lazy(() => import('@/pages/signin-page'));
+const Signup = lazy(() => import('@/pages/signup-page'));
+const Jobs = lazy(() => import('@/pages/jobs'));
+const JobTypePage = lazy(() => import('@/pages/JobTypePage'));
+const ManageUserPage = lazy(() => import('@/pages/manage-user-page'));
+const ManagerLayout = lazy(() => import('@/layouts/manager-layout'));
 
 export default function useReactRouter() {
   const routeElements = useRoutes([
@@ -23,7 +24,7 @@ export default function useReactRouter() {
       path: path.home,
       element: (
         <Suspense
-          fallback={<div className='flex text-[#811d01] items-center justify-center w-full h-screen'>Loading...</div>}
+          fallback={<div className='flex text-[#1EBF73] items-center justify-center w-full h-screen'>Loading...</div>}
         >
           <MainLayout>
             <HomePage />
@@ -35,9 +36,13 @@ export default function useReactRouter() {
     {
       path: path.job_type_page,
       element: (
-        <MainLayout>
-          <JobTypePage />
-        </MainLayout>
+        <Suspense
+          fallback={<div className='flex text-[#1EBF73] items-center justify-center w-full h-screen'>Loading...</div>}
+        >
+          <MainLayout>
+            <JobTypePage />
+          </MainLayout>
+        </Suspense>
       )
     },
     {
@@ -47,9 +52,13 @@ export default function useReactRouter() {
     {
       path: path.jobs,
       element: (
-        <MainLayout>
-          <Jobs />
-        </MainLayout>
+        <Suspense
+          fallback={<div className='flex text-[#1EBF73] items-center justify-center w-full h-screen'>Loading...</div>}
+        >
+          <MainLayout>
+            <Jobs />
+          </MainLayout>
+        </Suspense>
       )
     },
     {
@@ -58,11 +67,27 @@ export default function useReactRouter() {
       children: [
         {
           path: path.signin,
-          element: <Signin />
+          element: (
+            <Suspense
+              fallback={
+                <div className='flex text-[#1EBF73] items-center justify-center w-full h-screen'>Loading...</div>
+              }
+            >
+              <Signin />
+            </Suspense>
+          )
         },
         {
           path: path.signup,
-          element: <Signup />
+          element: (
+            <Suspense
+              fallback={
+                <div className='flex text-[#1EBF73] items-center justify-center w-full h-screen'>Loading...</div>
+              }
+            >
+              <Signup />
+            </Suspense>
+          )
         }
       ]
     },
@@ -73,49 +98,85 @@ export default function useReactRouter() {
         {
           path: path.manage_user,
           element: (
-            <ManagerLayout>
-              <ManageUserPage />
-            </ManagerLayout>
+            <Suspense
+              fallback={
+                <div className='flex text-[#1EBF73] items-center justify-center w-full h-screen'>Loading...</div>
+              }
+            >
+              <ManagerLayout>
+                <ManageUserPage />
+              </ManagerLayout>
+            </Suspense>
           )
         },
         {
           path: path.manage_job,
           element: (
-            <ManagerLayout>
-              <ManageJobPage />
-            </ManagerLayout>
+            <Suspense
+              fallback={
+                <div className='flex text-[#1EBF73] items-center justify-center w-full h-screen'>Loading...</div>
+              }
+            >
+              <ManagerLayout>
+                <ManageJobPage />
+              </ManagerLayout>
+            </Suspense>
           )
         },
         {
           path: path.manage_job_type,
           element: (
-            <ManagerLayout>
-              <ManageJobTypePage />
-            </ManagerLayout>
+            <Suspense
+              fallback={
+                <div className='flex text-[#1EBF73] items-center justify-center w-full h-screen'>Loading...</div>
+              }
+            >
+              <ManagerLayout>
+                <ManageJobTypePage />
+              </ManagerLayout>
+            </Suspense>
           )
         },
         {
           path: path.manage_service,
           element: (
-            <ManagerLayout>
-              <ManageServicePage />
-            </ManagerLayout>
+            <Suspense
+              fallback={
+                <div className='flex text-[#1EBF73] items-center justify-center w-full h-screen'>Loading...</div>
+              }
+            >
+              <ManagerLayout>
+                <ManageServicePage />
+              </ManagerLayout>
+            </Suspense>
           )
         },
         {
           path: path.profile,
           element: (
-            <MainLayout>
-              <ProfilePage />
-            </MainLayout>
+            <Suspense
+              fallback={
+                <div className='flex text-[#1EBF73] items-center justify-center w-full h-screen'>Loading...</div>
+              }
+            >
+              <MainLayout>
+                <ProfilePage />
+              </MainLayout>
+            </Suspense>
           )
         },
         {
           path: path.job_detail,
           element: (
-            <MainLayout>
-              <JobTypePage3 />
-            </MainLayout>
+            <Suspense
+              fallback={
+                <div className='flex text-[#1EBF73] items-center justify-center w-full h-screen'>Loading...</div>
+              }
+            >
+              <MainLayout>
+                <JobTypePage3 />
+              </MainLayout>
+            </Suspense>
           )
         }
       ]
