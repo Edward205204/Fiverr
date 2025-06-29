@@ -1,106 +1,74 @@
-import { useRef, useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-
-const designCategories = [
-  {
-    title: 'Logo & Brand Identity',
-    items: ['Logo Design', 'Brand Style Guides', 'Fonts & Typography', 'Business Cards & Stationery'],
-    image:
-      'https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/251526125/original/6037a38bbcf3a0f6d761a2ab8293f5733cfdc1c3/design-modern-minimalist-logo.jpg'
-  },
-  {
-    title: 'Web & App Design',
-    items: ['Website Design', 'App Design', 'UX Design', 'Landing Page Design', 'Icon Design'],
-    image:
-      'https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/167904930/original/28bca0e4265ae0f9ce14c688dbd2df45ef58b3c1/create-an-eye-catching-website-design.jpg'
-  },
-  {
-    title: 'Art & Illustration',
-    items: [
-      'Illustration',
-      'NFT Art',
-      'Pattern Design',
-      'Portraits & Caricatures',
-      'Cartoons & Comics',
-      'Tattoo Design',
-      'Storyboards'
-    ],
-    image:
-      'https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/168121809/original/2a8e42bb2fddabc8ad37cfeff2288a50f6fa6f64/draw-illustrations-and-concept-art.jpg'
-  },
-  {
-    title: 'Marketing Design',
-    items: ['Social Media Design', 'Email Design', 'Web Banners', 'Signage Design'],
-    image:
-      'https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/272454844/original/84d994fbc5b1739f1bc32bfa9d6cb0ad7c1e04c1/create-marketing-and-social-media-posts.jpg'
-  }
-];
+import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router';
+import jobApi from '@/apis/job.api';
+import useQueryConfig from '@/hooks/use-query-config';
 
 export default function HorizontalScrollCategories() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const { jobTypeId } = useQueryConfig();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const scrollAmount = 400;
+  const { data } = useQuery({
+    queryKey: ['jobTypes', jobTypeId],
+    queryFn: () => jobApi.getJobTypes()
+  });
 
-  const checkScrollButtons = () => {
-    const el = containerRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 0);
-    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth);
-  };
-
-  const scroll = (direction: 'left' | 'right') => {
-    const el = containerRef.current;
-    if (!el) return;
-    el.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
-  };
+  const jobTypes = data?.data.content;
 
   useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    el.addEventListener('scroll', checkScrollButtons);
-    checkScrollButtons();
-    return () => el.removeEventListener('scroll', checkScrollButtons);
-  }, []);
+    if (jobTypes && jobTypes.length > 0) {
+      const currentJobTypeId = Number(jobTypeId);
+
+      if (!jobTypeId || isNaN(currentJobTypeId) || currentJobTypeId < 1 || currentJobTypeId > jobTypes.length) {
+        const newSearchParams = new URLSearchParams(searchParams);
+        newSearchParams.set('jobTypeId', '1');
+        setSearchParams(newSearchParams);
+      }
+    }
+  }, [jobTypes, jobTypeId, searchParams, setSearchParams]);
+
+  const jobType = jobTypes?.find((item) => item.id === Number(jobTypeId));
 
   return (
-    <div className='relative w-full'>
-      <button
-        onClick={() => scroll('left')}
-        disabled={!canScrollLeft}
-        className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white shadow rounded-full ${
-          !canScrollLeft ? 'opacity-30 cursor-not-allowed' : ''
-        }`}
-      >
-        <ChevronLeft />
-      </button>
-
-      <div ref={containerRef} className='flex overflow-x-auto scroll-smooth space-x-6 no-scrollbar px-12'>
-        {designCategories.map((category, idx) => (
-          <div key={idx} className='flex-none w-[300px] bg-white rounded-xl shadow p-4 hover:shadow-md transition-all'>
-            <img src={category.image} alt={category.title} className='w-full h-[150px] object-cover rounded-md mb-4' />
-            <h3 className='font-semibold text-lg mb-2'>{category.title}</h3>
-            <ul className='space-y-1 text-gray-600 text-sm'>
-              {category.items.map((item, i) => (
-                <li key={i} className='hover:text-black cursor-pointer'>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+    <>
+      <div className='max-w-7xl mx-auto mt-3 mb-20'>
+        <h2 className='text-[30px] font-medium mt-4 mb-8'>Explore {jobType?.tenLoaiCongViec}</h2>
       </div>
+      <div className='container pb-12'>
+        <div className='relative w-full flex overflow-x-auto scroll-smooth space-x-6 no-scrollbar px-12 gap-4'>
+          {jobType?.dsNhomChiTietLoai &&
+            jobType.dsNhomChiTietLoai.map((item) => (
+              <div
+                key={item.id}
+                className='flex-none w-[220px] bg-white rounded-xl  hover:shadow-md transition-all p-4'
+              >
+                <div className='relative w-full pt-[100%] mb-4 rounded-md overflow-hidden'>
+                  <img
+                    src={item.hinhAnh}
+                    alt={item.tenNhom}
+                    className='absolute top-0 left-0 w-full h-full object-cover'
+                  />
+                </div>
 
-      <button
-        onClick={() => scroll('right')}
-        disabled={!canScrollRight}
-        className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white shadow rounded-full ${
-          !canScrollRight ? 'opacity-30 cursor-not-allowed' : ''
-        }`}
-      >
-        <ChevronRight />
-      </button>
-    </div>
+                <h3 className='font-semibold text-base text-gray-800 mb-3'>{item.tenNhom}</h3>
+
+                <ul className='space-y-1 text-sm text-gray-600'>
+                  {item.dsChiTietLoai && item.dsChiTietLoai.length > 0 ? (
+                    item.dsChiTietLoai.map((chiTiet) => (
+                      <li key={chiTiet.id} className='hover:text-black cursor-pointer transition-colors py-2'>
+                        {chiTiet.tenChiTiet}
+                      </li>
+                    ))
+                  ) : (
+                    <li className='hover:text-black cursor-pointer transition-colors py-2'>
+                      <p>No data</p>
+                    </li>
+                  )}
+                </ul>
+              </div>
+            ))}
+        </div>
+      </div>
+    </>
   );
 }
