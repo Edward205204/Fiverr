@@ -74,7 +74,6 @@ const UserProfile = () => {
   return (
     <div className='container py-6 px-4'>
       <div className='flex gap-6 px-8 py-6 w-full'>
-        {/* LEFT - User Info */}
         <div className='w-[320px] bg-white rounded-xl shadow p-6 border border-gray-200'>
           <div className='flex flex-col items-center text-center'>
             <AvatarUpload currentAvatar={user?.avatar || ''} userId={userId} onAvatarChange={() => {}} />
@@ -160,7 +159,6 @@ const UserProfile = () => {
           </div>
         </div>
 
-        {/* RIGHT - Hired Jobs */}
         <div className='flex-1 bg-white rounded-xl shadow p-4'>
           <h2 className='text-lg font-semibold mb-4'>Hired Jobs</h2>
           {hiredJobsLoading ? (
@@ -226,10 +224,8 @@ const UserProfile = () => {
         </div>
       </div>
 
-      {/* Edit Modal */}
       {user && <UserEditModal user={user} isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)} />}
 
-      {/* Hired Job Detail Modal */}
       <HiredJobDetailModal hiredJob={selectedHiredJob} isOpen={isDetailModalOpen} onClose={handleCloseDetailModal} />
     </div>
   );

@@ -9,7 +9,6 @@ export default function JobTypePage() {
       <JobTypeList />
       <HeroComponent />
 
-      {/* list type job */}
       <HorizontalScrollCategories />
 
       <ServiceRelated />

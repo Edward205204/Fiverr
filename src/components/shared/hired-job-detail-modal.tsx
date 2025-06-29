@@ -51,7 +51,6 @@ export default function HiredJobDetailModal({ hiredJob, isOpen, onClose }: Hired
     <div className='fixed inset-0 bg-white/30 backdrop-blur-sm flex items-center justify-center z-50'>
       <div className='bg-white rounded-lg shadow-xl w-full max-w-6xl h-[85vh] overflow-hidden'>
         <div className='flex h-full'>
-          {/* LEFT SIDE - Image and Basic Info */}
           <div className='w-1/3 bg-gray-50 p-6 flex flex-col'>
             <div className='flex justify-between items-center mb-4'>
               <h2 className='text-lg font-semibold'>Job Details</h2>
@@ -101,11 +100,9 @@ export default function HiredJobDetailModal({ hiredJob, isOpen, onClose }: Hired
             </div>
           </div>
 
-          {/* RIGHT SIDE - Detailed Info */}
           <div className='w-2/3 flex flex-col'>
             <div className='p-6 overflow-y-auto flex-1'>
               <div className='space-y-6'>
-                {/* Detailed Description */}
                 <div>
                   <h4 className='font-semibold text-gray-800 mb-3'>Detailed Description</h4>
                   <div className='bg-gray-50 p-4 rounded-lg'>
@@ -115,7 +112,6 @@ export default function HiredJobDetailModal({ hiredJob, isOpen, onClose }: Hired
                   </div>
                 </div>
 
-                {/* Short Description */}
                 <div>
                   <h4 className='font-semibold text-gray-800 mb-3'>Short Description</h4>
                   <div className='bg-blue-50 p-4 rounded-lg'>
@@ -125,7 +121,6 @@ export default function HiredJobDetailModal({ hiredJob, isOpen, onClose }: Hired
                   </div>
                 </div>
 
-                {/* Additional Information */}
                 <div className='grid grid-cols-2 gap-6'>
                   <div>
                     <h4 className='font-semibold text-gray-800 mb-3'>Job Information</h4>
@@ -169,7 +164,6 @@ export default function HiredJobDetailModal({ hiredJob, isOpen, onClose }: Hired
               </div>
             </div>
 
-            {/* Actions - Fixed at bottom */}
             <div className='p-6 border-t bg-white'>
               <div className='flex justify-end gap-2'>
                 <Button variant='outline' onClick={onClose}>

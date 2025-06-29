@@ -102,14 +102,12 @@ export default function JobFormModal({ isOpen, onClose, initialData, mode }: Job
   return (
     <div className='fixed inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-50 p-4'>
       <div className='bg-white rounded-xl shadow-2xl border border-gray-200 max-w-lg w-full'>
-        {/* Header */}
         <div className='flex items-center justify-between p-4 border-b border-gray-100'>
           <h2 className='text-lg font-semibold text-gray-900'>{mode === 'add' ? 'Add Job' : 'Edit Job'}</h2>
           <Button variant='ghost' size='sm' onClick={onClose} className='text-gray-400 hover:text-gray-600 h-8 w-8 p-0'>
             <X className='h-4 w-4' />
           </Button>
         </div>
-        {/* Content */}
         <form onSubmit={handleSubmit(onSubmit)} className='p-4 space-y-4'>
           <div>
             <label className='block text-sm font-medium text-gray-700'>Job Name</label>

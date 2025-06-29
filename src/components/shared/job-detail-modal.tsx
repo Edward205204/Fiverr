@@ -50,14 +50,12 @@ export default function JobDetailModal({ jobId, isOpen, onClose }: JobDetailModa
   return (
     <div className='fixed inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-50 p-2'>
       <div className='bg-white rounded-xl shadow-2xl border border-gray-200 max-w-[1400px] w-[95vw] max-h-[90vh] flex flex-col'>
-        {/* Header */}
         <div className='flex items-center justify-between px-8 py-4 border-b border-gray-100'>
           <h2 className='text-3xl font-bold text-gray-900'>Job Details</h2>
           <Button variant='ghost' size='sm' onClick={onClose} className='text-gray-400 hover:text-gray-600 h-8 w-8 p-0'>
             <X className='h-6 w-6' />
           </Button>
         </div>
-        {/* Content */}
         <div className='flex-1 overflow-y-auto px-10 py-4'>
           {isLoading && (
             <div className='flex items-center justify-center py-10'>
@@ -71,7 +69,6 @@ export default function JobDetailModal({ jobId, isOpen, onClose }: JobDetailModa
           )}
           {j && (
             <div className='grid grid-cols-1 md:grid-cols-2 gap-10 items-start'>
-              {/* Cột trái: Avatar, tên, rating, giá, creator, mô tả ngắn */}
               <div className='flex flex-col items-center md:items-start gap-6'>
                 <div className='flex-shrink-0'>
                   {j.hinhAnh ? (
@@ -110,18 +107,15 @@ export default function JobDetailModal({ jobId, isOpen, onClose }: JobDetailModa
                   </div>
                 </div>
               </div>
-              {/* Cột phải: Mô tả dài, các trường khác */}
               <div className='flex flex-col gap-6'>
                 <div className='bg-gray-50 rounded-lg p-4 h-full'>
                   <h4 className='text-lg font-semibold text-gray-900 mb-2'>Description</h4>
                   <p className='text-gray-700 text-base whitespace-pre-line'>{j.moTa}</p>
                 </div>
-                {/* Nếu muốn thêm các trường khác, thêm ở đây */}
               </div>
             </div>
           )}
         </div>
-        {/* Footer */}
         <div className='flex justify-end px-8 py-4 border-t border-gray-100'>
           <Button variant='outline' size='lg' onClick={onClose}>
             Close

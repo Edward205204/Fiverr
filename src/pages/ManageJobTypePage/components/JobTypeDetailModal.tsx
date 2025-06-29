@@ -24,7 +24,6 @@ export default function JobTypeDetailModal({ isOpen, onClose, jobType }: JobType
   return (
     <div className='fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50'>
       <div className='bg-white rounded-lg shadow-xl w-full max-w-4xl mx-4 max-h-[90vh] overflow-hidden'>
-        {/* Header */}
         <div className='flex items-center justify-between p-6 border-b border-gray-200'>
           <div>
             <h2 className='text-lg font-semibold text-gray-900'>Job Type Details</h2>
@@ -37,9 +36,7 @@ export default function JobTypeDetailModal({ isOpen, onClose, jobType }: JobType
           </Button>
         </div>
 
-        {/* Content */}
         <div className='p-6 overflow-y-auto max-h-[calc(90vh-120px)]'>
-          {/* Job Type Info */}
           <div className='mb-6'>
             <h3 className='text-lg font-medium text-gray-900 mb-4'>Job Type Information</h3>
             <div className='bg-gray-50 rounded-lg p-4'>
@@ -56,7 +53,6 @@ export default function JobTypeDetailModal({ isOpen, onClose, jobType }: JobType
             </div>
           </div>
 
-          {/* Job Type Groups */}
           <div>
             <div className='flex items-center justify-between mb-4'>
               <h3 className='text-lg font-medium text-gray-900'>Job Type Groups</h3>
@@ -77,7 +73,6 @@ export default function JobTypeDetailModal({ isOpen, onClose, jobType }: JobType
                     key={group.id}
                     className='border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow'
                   >
-                    {/* Group Header */}
                     <div className='flex items-start justify-between mb-3'>
                       <div className='flex-1'>
                         <h4 className='font-medium text-gray-900 mb-1'>{group.tenNhom}</h4>
@@ -98,7 +93,6 @@ export default function JobTypeDetailModal({ isOpen, onClose, jobType }: JobType
                       )}
                     </div>
 
-                    {/* Group Image */}
                     {group.hinhAnh && (
                       <div className='mb-3'>
                         <div className='flex items-center text-sm text-gray-500 mb-2'>
@@ -117,7 +111,6 @@ export default function JobTypeDetailModal({ isOpen, onClose, jobType }: JobType
                       </div>
                     )}
 
-                    {/* Detail Items */}
                     <div>
                       <div className='flex items-center text-sm text-gray-500 mb-2'>
                         <Layers className='w-4 h-4 mr-1' />
@@ -154,7 +147,6 @@ export default function JobTypeDetailModal({ isOpen, onClose, jobType }: JobType
           </div>
         </div>
 
-        {/* Footer */}
         <div className='flex items-center justify-end p-6 border-t border-gray-200'>
           <Button variant='outline' onClick={onClose}>
             Close

@@ -34,13 +34,11 @@ export default function ManageServicePage() {
   return (
     <>
       <div className='p-6'>
-        {/* Header */}
         <div className='mb-6'>
           <h1 className='text-2xl font-bold text-gray-900 mb-2'>Manage Services</h1>
           <p className='text-gray-600'>Manage hire works and comments</p>
         </div>
 
-        {/* Tabs */}
         <div className='mb-6'>
           <div className='border-b border-gray-200'>
             <nav className='-mb-px flex space-x-8'>
@@ -70,9 +68,7 @@ export default function ManageServicePage() {
           </div>
         </div>
 
-        {/* Content */}
         <div className='bg-white rounded-lg shadow'>
-          {/* Action Bar */}
           <div className='px-6 py-4 border-b border-gray-200 flex justify-between items-center'>
             <div>
               <h2 className='text-lg font-semibold text-gray-900'>
@@ -91,7 +87,6 @@ export default function ManageServicePage() {
             </Button>
           </div>
 
-          {/* Table Content */}
           <div className='p-6'>
             {activeTab === 'hireWorks' ? (
               <HireWorkTable onOpenModal={handleOpenHireWorkModal} />

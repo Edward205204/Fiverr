@@ -77,7 +77,6 @@ export default function HomeHeader() {
         </div>
       </div>
 
-      {/* Overlay để đóng menu khi click bên ngoài */}
       {showUserMenu && <div className='fixed inset-0 z-40' onClick={() => setShowUserMenu(false)} />}
     </header>
   );

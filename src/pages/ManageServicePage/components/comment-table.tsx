@@ -170,7 +170,6 @@ export default function CommentTable({ onOpenModal }: CommentTableProps) {
         )}
       </div>
 
-      {/* Modals */}
       <CommentDetailModal isOpen={isDetailModalOpen} onClose={handleCloseDetailModal} comment={selectedComment} />
       <CommentFormModal isOpen={isEditModalOpen} onClose={handleCloseEditModal} editingComment={editingComment} />
     </>

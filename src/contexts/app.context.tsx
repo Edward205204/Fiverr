@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react';
 import { getAccessTokenFromLS, getProfileFromLS } from '@/utils/auth';
-import User from '@/@types/user';
+import { User } from '@/@types/user';
 
 export interface AppContextInterface {
   isAuthenticated: boolean;

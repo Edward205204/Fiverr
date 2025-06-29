@@ -40,13 +40,11 @@ export default function AvatarUpload({ currentAvatar, userId, onAvatarChange }: 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      // Validate file type
       if (!file.type.startsWith('image/')) {
         toast.error('Please select an image file!');
         return;
       }
 
-      // Validate file size (max 5MB)
       if (file.size > 5 * 1024 * 1024) {
         toast.error('File too large! Please select a file smaller than 5MB.');
         return;
