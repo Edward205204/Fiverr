@@ -41,11 +41,8 @@ export default function Header({ searchBarStatus = true }: HeaderProps) {
             )}
           </div>
           <div className='flex items-center gap-8'>
-            <Link
-              to={'https://www.fiverr.com/start_selling?source=top_nav'}
-              className='py-[2px] hover:border-b hover:border-b-white transition-all duration-100'
-            >
-              Become a seller
+            <Link to={path.jobs} className='py-[2px] hover:border-b hover:border-b-white transition-all duration-100'>
+              Find a job
             </Link>
 
             {isAuthenticated && profile ? (

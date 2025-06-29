@@ -1,4 +1,4 @@
-import { Briefcase, Home, List, Package, User } from 'lucide-react';
+import { Briefcase, List, Package, User } from 'lucide-react';
 
 import {
   Sidebar,
@@ -14,11 +14,11 @@ import { Link, useLocation } from 'react-router';
 import path from '@/constants/path';
 
 const items = [
-  {
-    title: 'Back to Home',
-    url: path.home,
-    icon: Home
-  },
+  // {
+  //   title: 'Back to Home',
+  //   url: path.home,
+  //   icon: Home
+  // },
   {
     title: 'Manage Account',
     url: path.manage_user,
@@ -56,7 +56,7 @@ export function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <Link to={item.url}>
+                    <Link to={item.url} className={TITLE === item.title ? ' text-[#1dbf73] ' : ''}>
                       <item.icon />
                       <span>{item.title}</span>
                     </Link>
