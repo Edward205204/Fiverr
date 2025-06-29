@@ -9,9 +9,8 @@ export default function JobTypeListPage2() {
   });
 
   const jobTypeList = data?.data.content;
-  console.log('jobTypeList', jobTypeList);
   if (!jobTypeList) return null;
-
+  
   return (
     <div>
       <>

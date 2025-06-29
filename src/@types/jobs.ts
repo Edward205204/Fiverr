@@ -37,3 +37,33 @@ export interface JobResponse {
   keywords?: string;
   data: Job[];
 }
+
+export interface JobDetailPage3 {
+  id: number;
+  avatar: string;
+  tenChiTietLoai: string;
+  tenLoaiCongViec: string;
+  tenNhomChiTietLoai: string;
+  tenNguoiTao: string;
+  maChiTietLoaiCongViec: number;
+  congViec: {
+    id: number;
+    tenCongViec: string;
+    danhGia: number;
+    giaTien: number;
+    nguoiTao: number;
+    hinhAnh: string;
+    moTa: string;
+    moTaNgan: string;
+    saoCongViec: number;
+  };
+}
+
+export interface JobTypeComment {
+  id: number;
+  ngayBinhLuan: string;
+  noiDung: string;
+  saoBinhLuan: number;
+  tenNguoiBinhLuan: string;
+  avatar: string;
+}

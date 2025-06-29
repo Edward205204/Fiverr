@@ -5,7 +5,7 @@ interface JobTypeTooltipProps {
 
 export default function JobTypeToolPage2({ item }: JobTypeTooltipProps) {
   const allTenChiTiet = item.dsNhomChiTietLoai;
-  console.log('allTenChiTiet', allTenChiTiet);
+  console.log('item', item);
   return (
     <div className='container'>
       <div className='py-2'>

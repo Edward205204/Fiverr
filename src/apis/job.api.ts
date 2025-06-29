@@ -1,5 +1,5 @@
 import { Job, JobResponse } from '@/@types/jobs';
-import { JobDetail, JobTypeList} from '@/@types/jobs';
+import { JobDetail, JobTypeList, JobDetailPage3, JobTypeComment } from '@/@types/jobs';
 import Response from '@/@types/response';
 import http from '@/utils/http';
 
@@ -10,7 +10,9 @@ const baseUrl = {
   uploadImage: '/cong-viec/upload-hinh-cong-viec',
   getJobs: '/cong-viec/phan-trang-tim-kiem',
   getJobTypes: '/cong-viec/lay-menu-loai-cong-viec',
-  getJobTypeById: '/cong-viec/lay-loai-cong-viec-theo-id'
+  getJobTypeById: '/cong-viec/lay-loai-cong-viec-theo-id',
+  getJobDetail: '/cong-viec/lay-cong-viec-chi-tiet',
+  getJobComment: '/binh-luan/lay-binh-luan-theo-cong-viec'
 };
 
 class JobApi {
@@ -38,6 +40,13 @@ class JobApi {
     return http.post<Response<string>>(`${baseUrl.uploadImage}/${id}`, formData, {
       headers: { 'Content-Type': 'multipart/form-data' }
     });
+  };
+
+  getJobDetail = (maCongViec: number) => {
+    return http.get<Response<JobDetailPage3>>(`${baseUrl.getJobDetail}/${maCongViec}`);
+  };
+  getJobComment = (maCongViec: number) => {
+    return http.get<Response<JobTypeComment>>(`${baseUrl.getJobComment}/${maCongViec}`);
   };
 
   getJobsManager = (params: { pageIndex: number; pageSize: number; keyword: string }) =>
