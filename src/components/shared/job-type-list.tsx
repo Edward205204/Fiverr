@@ -9,7 +9,7 @@ export default function JobTypeList() {
   });
 
   const jobTypeList = data?.data.content;
-
+  console.log(jobTypeList);
   if (!jobTypeList) return null;
 
   return (

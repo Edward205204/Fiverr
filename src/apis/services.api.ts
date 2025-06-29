@@ -14,7 +14,6 @@ const baseUrl = {
 };
 
 class ServicesApi {
-  // ThueCongViec APIs
   getThueCongViecList = (params: { pageIndex: number; pageSize: number; keyword?: string }) => {
     return http.get<Response<ThueCongViecResponse>>(baseUrl.thueCongViec, { params });
   };

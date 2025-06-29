@@ -101,7 +101,6 @@ export default function ManageServicePage() {
           </div>
         </div>
 
-        {/* Modals */}
         <HireWorkFormModal isOpen={isHireWorkModalOpen} onClose={handleCloseHireWorkModal} />
         <CommentFormModal isOpen={isCommentModalOpen} onClose={handleCloseCommentModal} />
       </div>

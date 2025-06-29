@@ -5,6 +5,7 @@ import { Switch } from '@/components/ui/switch';
 import { User, UserUpdateRequest } from '@/@types/user';
 import userApi from '@/apis/user.api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 
 interface UserEditModalProps {
   user: User;
@@ -33,12 +34,12 @@ export default function UserEditModal({ user, isOpen, onClose }: UserEditModalPr
   const updateUserMutation = useMutation({
     mutationFn: (data: UserUpdateRequest) => userApi.updateUser(user.id, data),
     onSuccess: () => {
-      alert('Cập nhật thông tin thành công!');
+      toast.success('Cập nhật thông tin thành công!');
       queryClient.invalidateQueries({ queryKey: ['user', user.id] });
       onClose();
     },
     onError: () => {
-      alert('Có lỗi xảy ra khi cập nhật thông tin!');
+      toast.error('Có lỗi xảy ra khi cập nhật thông tin!');
     }
   });
 
