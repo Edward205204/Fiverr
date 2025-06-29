@@ -4,8 +4,10 @@ import { Button } from '@/components/ui/button';
 import jobApi from '@/apis/job.api';
 import { toast } from 'react-toastify';
 import { X } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import type { Job } from '@/@types/jobs';
+import { AppContext } from '@/contexts/app.context';
+import { User } from '@/@types/user';
 
 interface JobFormModalProps {
   isOpen: boolean;
@@ -18,7 +20,7 @@ export default function JobFormModal({ isOpen, onClose, initialData, mode }: Job
   const queryClient = useQueryClient();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(initialData?.hinhAnh || null);
-
+  const { profile } = useContext(AppContext);
   const {
     register,
     handleSubmit,
@@ -30,7 +32,7 @@ export default function JobFormModal({ isOpen, onClose, initialData, mode }: Job
       tenCongViec: '',
       danhGia: 0,
       giaTien: 0,
-      nguoiTao: 0,
+      nguoiTao: (profile as User).id,
       hinhAnh: '',
       moTa: '',
       maChiTietLoaiCongViec: 0,
@@ -47,7 +49,7 @@ export default function JobFormModal({ isOpen, onClose, initialData, mode }: Job
           tenCongViec: '',
           danhGia: 0,
           giaTien: 0,
-          nguoiTao: 0,
+          nguoiTao: (profile as User).id,
           hinhAnh: '',
           moTa: '',
           maChiTietLoaiCongViec: 0,
@@ -57,7 +59,7 @@ export default function JobFormModal({ isOpen, onClose, initialData, mode }: Job
       );
       setImagePreview(initialData?.hinhAnh || null);
     }
-  }, [isOpen, initialData, reset]);
+  }, [isOpen, initialData, reset, profile]);
 
   const mutation = useMutation({
     mutationFn: async (data: Job) => {
@@ -141,15 +143,6 @@ export default function JobFormModal({ isOpen, onClose, initialData, mode }: Job
             </div>
           </div>
           <div className='grid grid-cols-2 gap-2'>
-            <div>
-              <label className='block text-sm font-medium text-gray-700'>Creator ID</label>
-              <input
-                type='number'
-                {...register('nguoiTao', { required: 'Required', min: 0 })}
-                className='mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm'
-              />
-              {errors.nguoiTao && <p className='text-xs text-red-500 mt-1'>{errors.nguoiTao.message as string}</p>}
-            </div>
             <div>
               <label className='block text-sm font-medium text-gray-700'>Category Detail ID</label>
               <input
