@@ -34,6 +34,10 @@ class ServicesApi {
     return http.delete<Response<string>>(`${baseUrl.thueCongViec}/${id}`);
   };
 
+  completeThueCongViec = (maThueCongViec: number) => {
+    return http.post<Response<string>>(`${baseUrl.thueCongViec}/hoan-thanh-cong-viec/${maThueCongViec}`);
+  };
+
   // BinhLuan APIs
   getBinhLuanList = () => {
     return http.get<Response<BinhLuan[]>>(baseUrl.binhLuan);

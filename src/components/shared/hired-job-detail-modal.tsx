@@ -2,7 +2,6 @@ import { HiredJob } from '@/@types/user';
 import { Button } from '@/components/ui/button';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import servicesApi from '@/apis/services.api';
-import { ThueCongViecCreateRequest } from '@/@types/services';
 
 interface HiredJobDetailModalProps {
   hiredJob: HiredJob | null;
@@ -14,7 +13,7 @@ export default function HiredJobDetailModal({ hiredJob, isOpen, onClose }: Hired
   const queryClient = useQueryClient();
 
   const updateHiredJobMutation = useMutation({
-    mutationFn: (data: ThueCongViecCreateRequest) => servicesApi.updateThueCongViec(data.id, data),
+    mutationFn: (maThueCongViec: number) => servicesApi.completeThueCongViec(maThueCongViec),
     onSuccess: () => {
       alert('Marked as completed successfully!');
       queryClient.invalidateQueries({ queryKey: ['hiredJobs'] });
@@ -28,15 +27,7 @@ export default function HiredJobDetailModal({ hiredJob, isOpen, onClose }: Hired
   const handleMarkComplete = () => {
     if (!hiredJob) return;
 
-    const updateData: ThueCongViecCreateRequest = {
-      id: hiredJob.id,
-      maCongViec: hiredJob.congViec.id,
-      maNguoiThue: hiredJob.congViec.nguoiTao, // Giả sử nguoiTao là maNguoiThue
-      ngayThue: hiredJob.ngayThue,
-      hoanThanh: true
-    };
-
-    updateHiredJobMutation.mutate(updateData);
+    updateHiredJobMutation.mutate(hiredJob.id);
   };
 
   if (!isOpen || !hiredJob) return null;
