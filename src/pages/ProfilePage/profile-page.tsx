@@ -31,13 +31,13 @@ const UserProfile = () => {
   const formatDate = (dateString: string) => {
     if (!dateString || dateString === '0') return 'N/A';
     const date = new Date(dateString);
-    return date.toLocaleDateString('vi-VN');
+    return date.toLocaleDateString('en-US');
   };
 
   const formatBirthday = (birthday: string) => {
     if (!birthday || birthday === '0') return 'N/A';
     const date = new Date(birthday);
-    return date.toLocaleDateString('vi-VN');
+    return date.toLocaleDateString('en-US');
   };
 
   const handleViewDetail = (hiredJob: HiredJob) => {
@@ -94,39 +94,39 @@ const UserProfile = () => {
 
           <div className='mt-6 border-t border-gray-200 pt-4 text-sm space-y-6'>
             <div className='flex justify-between items-start'>
-              <span className='font-medium text-gray-700'>Thông tin cá nhân</span>
+              <span className='font-medium text-gray-700'>Personal Information</span>
               <Button
                 variant='outline'
                 size='sm'
                 onClick={() => setIsEditModalOpen(true)}
                 className='text-blue-600 text-xs'
               >
-                Chỉnh sửa
+                Edit
               </Button>
             </div>
 
             <div className='space-y-2'>
               <div className='flex justify-between'>
-                <span className='text-gray-600'>Số điện thoại:</span>
+                <span className='text-gray-600'>Phone:</span>
                 <span className='font-medium'>{user?.phone || 'N/A'}</span>
               </div>
               <div className='flex justify-between'>
-                <span className='text-gray-600'>Ngày sinh:</span>
+                <span className='text-gray-600'>Birthday:</span>
                 <span className='font-medium'>{formatBirthday(user?.birthday || '')}</span>
               </div>
               <div className='flex justify-between'>
-                <span className='text-gray-600'>Giới tính:</span>
-                <span className='font-medium'>{user?.gender ? 'Nam' : 'Nữ'}</span>
+                <span className='text-gray-600'>Gender:</span>
+                <span className='font-medium'>{user?.gender ? 'Male' : 'Female'}</span>
               </div>
               <div className='flex justify-between'>
-                <span className='text-gray-600'>Vai trò:</span>
+                <span className='text-gray-600'>Role:</span>
                 <span className='font-medium'>{user?.role || 'USER'}</span>
               </div>
             </div>
 
             <div className='flex justify-between items-start'>
               <div>
-                <p className='font-medium text-gray-700 mb-1'>Kỹ năng</p>
+                <p className='font-medium text-gray-700 mb-1'>Skills</p>
                 {user?.skill && user.skill.length > 0 ? (
                   <div className='flex flex-wrap gap-1'>
                     {user.skill.map((skill, index) => (
@@ -136,14 +136,14 @@ const UserProfile = () => {
                     ))}
                   </div>
                 ) : (
-                  <p className='text-gray-500 text-xs'>Chưa có kỹ năng nào.</p>
+                  <p className='text-gray-500 text-xs'>No skills added yet.</p>
                 )}
               </div>
             </div>
 
             <div className='flex justify-between items-start'>
               <div>
-                <p className='font-medium text-gray-700 mb-1'>Chứng chỉ</p>
+                <p className='font-medium text-gray-700 mb-1'>Certifications</p>
                 {user?.certification && user.certification.length > 0 ? (
                   <div className='flex flex-wrap gap-1'>
                     {user.certification.map((cert, index) => (
@@ -153,16 +153,16 @@ const UserProfile = () => {
                     ))}
                   </div>
                 ) : (
-                  <p className='text-gray-500 text-xs'>Chưa có chứng chỉ nào.</p>
+                  <p className='text-gray-500 text-xs'>No certifications added yet.</p>
                 )}
               </div>
             </div>
           </div>
         </div>
 
-        {/* RIGHT - Gigs hired */}
+        {/* RIGHT - Hired Jobs */}
         <div className='flex-1 bg-white rounded-xl shadow p-4'>
-          <h2 className='text-lg font-semibold mb-4'>Công việc đã thuê</h2>
+          <h2 className='text-lg font-semibold mb-4'>Hired Jobs</h2>
           {hiredJobsLoading ? (
             <div className='space-y-4'>
               {[1, 2].map((i) => (
@@ -192,14 +192,14 @@ const UserProfile = () => {
                     <div>
                       <h3 className='text-sm font-semibold text-gray-800'>{hiredJob.congViec.tenCongViec}</h3>
                       <p className='text-xs text-gray-500 mt-1'>{hiredJob.congViec.moTaNgan}</p>
-                      <p className='text-xs text-gray-400 mt-1'>Ngày thuê: {formatDate(hiredJob.ngayThue)}</p>
+                      <p className='text-xs text-gray-400 mt-1'>Hired date: {formatDate(hiredJob.ngayThue)}</p>
                     </div>
                     <div className='flex justify-between items-center mt-2'>
                       <button
                         className='text-sm text-blue-600 hover:underline'
                         onClick={() => handleViewDetail(hiredJob)}
                       >
-                        Xem chi tiết
+                        View details
                       </button>
                       <div className='flex items-center gap-2'>
                         <span
@@ -207,7 +207,7 @@ const UserProfile = () => {
                             hiredJob.hoanThanh ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
                           }`}
                         >
-                          {hiredJob.hoanThanh ? 'Hoàn thành' : 'Đang thực hiện'}
+                          {hiredJob.hoanThanh ? 'Completed' : 'In Progress'}
                         </span>
                         <div className='flex items-center text-yellow-500 text-sm gap-1'>
                           {'★'.repeat(hiredJob.congViec.saoCongViec)}
@@ -220,7 +220,7 @@ const UserProfile = () => {
             </div>
           ) : (
             <div className='text-center py-8 text-gray-500'>
-              <p>Bạn chưa thuê công việc nào.</p>
+              <p>You haven't hired any jobs yet.</p>
             </div>
           )}
         </div>

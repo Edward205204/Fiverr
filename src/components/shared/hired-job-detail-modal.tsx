@@ -16,12 +16,12 @@ export default function HiredJobDetailModal({ hiredJob, isOpen, onClose }: Hired
   const updateHiredJobMutation = useMutation({
     mutationFn: (data: ThueCongViecCreateRequest) => servicesApi.updateThueCongViec(data.id, data),
     onSuccess: () => {
-      alert('Đánh dấu hoàn thành thành công!');
+      alert('Marked as completed successfully!');
       queryClient.invalidateQueries({ queryKey: ['hiredJobs'] });
       onClose();
     },
     onError: () => {
-      alert('Có lỗi xảy ra khi đánh dấu hoàn thành!');
+      alert('An error occurred while marking as completed!');
     }
   });
 
@@ -44,7 +44,7 @@ export default function HiredJobDetailModal({ hiredJob, isOpen, onClose }: Hired
   const formatDate = (dateString: string) => {
     if (!dateString || dateString === '0') return 'N/A';
     const date = new Date(dateString);
-    return date.toLocaleDateString('vi-VN');
+    return date.toLocaleDateString('en-US');
   };
 
   return (
@@ -54,7 +54,7 @@ export default function HiredJobDetailModal({ hiredJob, isOpen, onClose }: Hired
           {/* LEFT SIDE - Image and Basic Info */}
           <div className='w-1/3 bg-gray-50 p-6 flex flex-col'>
             <div className='flex justify-between items-center mb-4'>
-              <h2 className='text-lg font-semibold'>Chi tiết công việc</h2>
+              <h2 className='text-lg font-semibold'>Job Details</h2>
               <Button variant='outline' size='sm' onClick={onClose}>
                 ✕
               </Button>
@@ -73,25 +73,25 @@ export default function HiredJobDetailModal({ hiredJob, isOpen, onClose }: Hired
 
               <div className='space-y-3 text-sm'>
                 <div className='flex justify-between'>
-                  <span className='text-gray-600'>Ngày thuê:</span>
+                  <span className='text-gray-600'>Hired date:</span>
                   <span className='font-medium'>{formatDate(hiredJob.ngayThue)}</span>
                 </div>
                 <div className='flex justify-between'>
-                  <span className='text-gray-600'>Trạng thái:</span>
+                  <span className='text-gray-600'>Status:</span>
                   <span
                     className={`px-2 py-1 rounded text-xs ${
                       hiredJob.hoanThanh ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
                     }`}
                   >
-                    {hiredJob.hoanThanh ? 'Hoàn thành' : 'Đang thực hiện'}
+                    {hiredJob.hoanThanh ? 'Completed' : 'In Progress'}
                   </span>
                 </div>
                 <div className='flex justify-between'>
-                  <span className='text-gray-600'>Giá tiền:</span>
+                  <span className='text-gray-600'>Price:</span>
                   <span className='font-medium text-green-600'>${hiredJob.congViec.giaTien}</span>
                 </div>
                 <div className='flex justify-between items-center'>
-                  <span className='text-gray-600'>Đánh giá:</span>
+                  <span className='text-gray-600'>Rating:</span>
                   <span className='flex items-center'>
                     <span className='text-yellow-500 mr-1'>{'★'.repeat(hiredJob.congViec.saoCongViec)}</span>
                     <span className='text-sm'>({hiredJob.congViec.danhGia})</span>
@@ -105,9 +105,9 @@ export default function HiredJobDetailModal({ hiredJob, isOpen, onClose }: Hired
           <div className='w-2/3 flex flex-col'>
             <div className='p-6 overflow-y-auto flex-1'>
               <div className='space-y-6'>
-                {/* Mô tả chi tiết */}
+                {/* Detailed Description */}
                 <div>
-                  <h4 className='font-semibold text-gray-800 mb-3'>Mô tả chi tiết</h4>
+                  <h4 className='font-semibold text-gray-800 mb-3'>Detailed Description</h4>
                   <div className='bg-gray-50 p-4 rounded-lg'>
                     <p className='text-gray-700 whitespace-pre-wrap text-sm leading-relaxed'>
                       {hiredJob.congViec.moTa}
@@ -115,9 +115,9 @@ export default function HiredJobDetailModal({ hiredJob, isOpen, onClose }: Hired
                   </div>
                 </div>
 
-                {/* Mô tả ngắn */}
+                {/* Short Description */}
                 <div>
-                  <h4 className='font-semibold text-gray-800 mb-3'>Mô tả ngắn</h4>
+                  <h4 className='font-semibold text-gray-800 mb-3'>Short Description</h4>
                   <div className='bg-blue-50 p-4 rounded-lg'>
                     <p className='text-gray-700 whitespace-pre-wrap text-sm leading-relaxed'>
                       {hiredJob.congViec.moTaNgan}
@@ -125,42 +125,42 @@ export default function HiredJobDetailModal({ hiredJob, isOpen, onClose }: Hired
                   </div>
                 </div>
 
-                {/* Thông tin bổ sung */}
+                {/* Additional Information */}
                 <div className='grid grid-cols-2 gap-6'>
                   <div>
-                    <h4 className='font-semibold text-gray-800 mb-3'>Thông tin công việc</h4>
+                    <h4 className='font-semibold text-gray-800 mb-3'>Job Information</h4>
                     <div className='space-y-2 text-sm'>
                       <div className='flex justify-between'>
-                        <span className='text-gray-600'>ID công việc:</span>
+                        <span className='text-gray-600'>Job ID:</span>
                         <span className='font-medium'>#{hiredJob.congViec.id}</span>
                       </div>
                       <div className='flex justify-between'>
-                        <span className='text-gray-600'>ID thuê:</span>
+                        <span className='text-gray-600'>Hire ID:</span>
                         <span className='font-medium'>#{hiredJob.id}</span>
                       </div>
                       <div className='flex justify-between'>
-                        <span className='text-gray-600'>Người tạo:</span>
+                        <span className='text-gray-600'>Creator:</span>
                         <span className='font-medium'>User #{hiredJob.congViec.nguoiTao}</span>
                       </div>
                       <div className='flex justify-between'>
-                        <span className='text-gray-600'>Mã chi tiết loại:</span>
+                        <span className='text-gray-600'>Category Code:</span>
                         <span className='font-medium'>{hiredJob.congViec.maChiTietLoaiCongViec}</span>
                       </div>
                     </div>
                   </div>
                   <div>
-                    <h4 className='font-semibold text-gray-800 mb-3'>Thống kê</h4>
+                    <h4 className='font-semibold text-gray-800 mb-3'>Statistics</h4>
                     <div className='space-y-2 text-sm'>
                       <div className='flex justify-between'>
-                        <span className='text-gray-600'>Số sao:</span>
+                        <span className='text-gray-600'>Stars:</span>
                         <span className='font-medium'>{hiredJob.congViec.saoCongViec}/5</span>
                       </div>
                       <div className='flex justify-between'>
-                        <span className='text-gray-600'>Số đánh giá:</span>
+                        <span className='text-gray-600'>Reviews:</span>
                         <span className='font-medium'>{hiredJob.congViec.danhGia}</span>
                       </div>
                       <div className='flex justify-between'>
-                        <span className='text-gray-600'>Giá tiền:</span>
+                        <span className='text-gray-600'>Price:</span>
                         <span className='font-medium text-green-600'>${hiredJob.congViec.giaTien}</span>
                       </div>
                     </div>
@@ -173,7 +173,7 @@ export default function HiredJobDetailModal({ hiredJob, isOpen, onClose }: Hired
             <div className='p-6 border-t bg-white'>
               <div className='flex justify-end gap-2'>
                 <Button variant='outline' onClick={onClose}>
-                  Đóng
+                  Close
                 </Button>
                 {!hiredJob.hoanThanh && (
                   <Button
@@ -181,7 +181,7 @@ export default function HiredJobDetailModal({ hiredJob, isOpen, onClose }: Hired
                     onClick={handleMarkComplete}
                     disabled={updateHiredJobMutation.isPending}
                   >
-                    {updateHiredJobMutation.isPending ? 'Đang xử lý...' : 'Đánh dấu hoàn thành'}
+                    {updateHiredJobMutation.isPending ? 'Processing...' : 'Mark as Completed'}
                   </Button>
                 )}
               </div>

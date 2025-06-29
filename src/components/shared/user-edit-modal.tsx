@@ -34,12 +34,12 @@ export default function UserEditModal({ user, isOpen, onClose }: UserEditModalPr
   const updateUserMutation = useMutation({
     mutationFn: (data: UserUpdateRequest) => userApi.updateUser(user.id, data),
     onSuccess: () => {
-      toast.success('Cập nhật thông tin thành công!');
+      toast.success('Information updated successfully!');
       queryClient.invalidateQueries({ queryKey: ['user', user.id] });
       onClose();
     },
     onError: () => {
-      toast.error('Có lỗi xảy ra khi cập nhật thông tin!');
+      toast.error('An error occurred while updating information!');
     }
   });
 
@@ -88,7 +88,7 @@ export default function UserEditModal({ user, isOpen, onClose }: UserEditModalPr
     <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50'>
       <div className='bg-white rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto'>
         <div className='flex justify-between items-center mb-4'>
-          <h2 className='text-xl font-semibold'>Chỉnh sửa thông tin</h2>
+          <h2 className='text-xl font-semibold'>Edit Information</h2>
           <Button variant='outline' onClick={onClose}>
             ✕
           </Button>
@@ -97,7 +97,7 @@ export default function UserEditModal({ user, isOpen, onClose }: UserEditModalPr
         <form onSubmit={handleSubmit} className='space-y-4'>
           <div className='grid grid-cols-2 gap-4'>
             <div>
-              <label className='block text-sm font-medium mb-1'>Tên</label>
+              <label className='block text-sm font-medium mb-1'>Name</label>
               <Input
                 value={formData.name}
                 onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
@@ -117,7 +117,7 @@ export default function UserEditModal({ user, isOpen, onClose }: UserEditModalPr
 
           <div className='grid grid-cols-2 gap-4'>
             <div>
-              <label className='block text-sm font-medium mb-1'>Số điện thoại</label>
+              <label className='block text-sm font-medium mb-1'>Phone</label>
               <Input
                 value={formData.phone}
                 onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
@@ -125,7 +125,7 @@ export default function UserEditModal({ user, isOpen, onClose }: UserEditModalPr
               />
             </div>
             <div>
-              <label className='block text-sm font-medium mb-1'>Ngày sinh</label>
+              <label className='block text-sm font-medium mb-1'>Birthday</label>
               <Input
                 type='date'
                 value={formData.birthday}
@@ -140,15 +140,15 @@ export default function UserEditModal({ user, isOpen, onClose }: UserEditModalPr
               checked={formData.gender}
               onCheckedChange={(checked) => setFormData((prev) => ({ ...prev, gender: checked }))}
             />
-            <label className='text-sm font-medium'>Nam</label>
+            <label className='text-sm font-medium'>Male</label>
           </div>
 
           <div>
-            <label className='block text-sm font-medium mb-1'>Kỹ năng</label>
+            <label className='block text-sm font-medium mb-1'>Skills</label>
             <div className='flex gap-2 mb-2'>
-              <Input value={newSkill} onChange={(e) => setNewSkill(e.target.value)} placeholder='Thêm kỹ năng mới' />
+              <Input value={newSkill} onChange={(e) => setNewSkill(e.target.value)} placeholder='Add new skill' />
               <Button type='button' onClick={addSkill} variant='outline'>
-                Thêm
+                Add
               </Button>
             </div>
             <div className='flex flex-wrap gap-2'>
@@ -171,15 +171,15 @@ export default function UserEditModal({ user, isOpen, onClose }: UserEditModalPr
           </div>
 
           <div>
-            <label className='block text-sm font-medium mb-1'>Chứng chỉ</label>
+            <label className='block text-sm font-medium mb-1'>Certifications</label>
             <div className='flex gap-2 mb-2'>
               <Input
                 value={newCertification}
                 onChange={(e) => setNewCertification(e.target.value)}
-                placeholder='Thêm chứng chỉ mới'
+                placeholder='Add new certification'
               />
               <Button type='button' onClick={addCertification} variant='outline'>
-                Thêm
+                Add
               </Button>
             </div>
             <div className='flex flex-wrap gap-2'>
@@ -203,10 +203,10 @@ export default function UserEditModal({ user, isOpen, onClose }: UserEditModalPr
 
           <div className='flex justify-end gap-2 pt-4'>
             <Button type='button' variant='outline' onClick={onClose}>
-              Hủy
+              Cancel
             </Button>
             <Button type='submit' disabled={updateUserMutation.isPending}>
-              {updateUserMutation.isPending ? 'Đang cập nhật...' : 'Cập nhật'}
+              {updateUserMutation.isPending ? 'Updating...' : 'Update'}
             </Button>
           </div>
         </form>

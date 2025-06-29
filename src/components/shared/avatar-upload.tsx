@@ -22,14 +22,14 @@ export default function AvatarUpload({ currentAvatar, userId, onAvatarChange }: 
       const newAvatarUrl = response.data?.content || response.data;
       onAvatarChange(newAvatarUrl);
       queryClient.invalidateQueries({ queryKey: ['user', userId] });
-      toast.success('Cập nhật avatar thành công!');
+      toast.success('Avatar updated successfully!');
     },
     onError: (error) => {
       const axiosError = error as AxiosError<{ content: string; message: string }>;
       const errorMessage =
         axiosError.response?.data?.content ||
         axiosError.response?.data?.message ||
-        'Có lỗi xảy ra khi cập nhật avatar!';
+        'An error occurred while updating avatar!';
       toast.error(errorMessage);
     },
     onSettled: () => {
@@ -42,13 +42,13 @@ export default function AvatarUpload({ currentAvatar, userId, onAvatarChange }: 
     if (file) {
       // Validate file type
       if (!file.type.startsWith('image/')) {
-        toast.error('Vui lòng chọn file hình ảnh!');
+        toast.error('Please select an image file!');
         return;
       }
 
       // Validate file size (max 5MB)
       if (file.size > 5 * 1024 * 1024) {
-        toast.error('File quá lớn! Vui lòng chọn file nhỏ hơn 5MB.');
+        toast.error('File too large! Please select a file smaller than 5MB.');
         return;
       }
 
