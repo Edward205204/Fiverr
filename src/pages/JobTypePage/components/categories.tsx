@@ -19,7 +19,7 @@ export default function HorizontalScrollCategories() {
     if (jobTypes && jobTypes.length > 0) {
       const currentJobTypeId = Number(jobTypeId);
 
-      if (!jobTypeId || isNaN(currentJobTypeId) || currentJobTypeId < 1 || currentJobTypeId > jobTypes.length) {
+      if (!jobTypeId || isNaN(currentJobTypeId) || currentJobTypeId < 1) {
         const newSearchParams = new URLSearchParams(searchParams);
         newSearchParams.set('jobTypeId', '1');
         setSearchParams(newSearchParams);
