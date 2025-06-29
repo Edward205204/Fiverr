@@ -28,15 +28,12 @@ export default function Signup() {
   });
   const signUpMutation = useMutation({
     mutationFn: authApi.signUp,
-    onSuccess: (data) => {
-      console.log(data);
+    onSuccess: () => {
       navigate('/signin');
     }
   });
-  console.log('ERRORS:', errors);
 
   const onSubmit = async (values: RegisterSchemaType) => {
-    console.log('ok');
     try {
       await signUpMutation.mutateAsync(values);
     } catch (error) {

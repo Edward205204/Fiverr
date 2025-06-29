@@ -1,11 +1,14 @@
 import http from '@/utils/http';
 import { User, UserUpdateRequest, HiredJob } from '@/@types/user';
+import { BinhLuan } from '@/@types/services';
+import Response from '@/@types/response';
 
 const baseUrl = {
   getUser: '/users',
   updateUser: '/users',
   uploadAvatar: '/users/upload-avatar',
-  getHiredJobs: '/thue-cong-viec/lay-danh-sach-da-thue'
+  getHiredJobs: '/thue-cong-viec/lay-danh-sach-da-thue',
+  createComment: '/binh-luan'
 };
 
 class UserApi {
@@ -34,6 +37,10 @@ class UserApi {
 
   getHiredJobs = () => {
     return http.get<{ content: HiredJob[] }>(baseUrl.getHiredJobs);
+  };
+
+  createComment = (body: BinhLuan) => {
+    return http.post<Response<BinhLuan>>(baseUrl.createComment, body);
   };
 }
 
