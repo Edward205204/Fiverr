@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import userApi from '@/apis/user.api';
 import UserEditModal from '@/components/shared/user-edit-modal';
@@ -6,14 +6,14 @@ import AvatarUpload from '@/components/shared/avatar-upload';
 import HiredJobDetailModal from '@/components/shared/hired-job-detail-modal';
 import { Button } from '@/components/ui/button';
 import { HiredJob } from '@/@types/user';
+import { AppContext } from '@/contexts/app.context';
 
 const UserProfile = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedHiredJob, setSelectedHiredJob] = useState<HiredJob | null>(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
-
-  // Giả sử user ID là 1 (có thể lấy từ context hoặc localStorage)
-  const userId = 1;
+  const { profile } = useContext(AppContext);
+  const userId = profile?.id;
 
   const { data: userData, isLoading: userLoading } = useQuery({
     queryKey: ['user', userId],
